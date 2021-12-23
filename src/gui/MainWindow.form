@@ -29,10 +29,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuSettings">
+        <Menu class="javax.swing.JMenu" name="jMenuNetwork">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Settings"/>
+            <Property name="text" type="java.lang.String" value="Network"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConfigTCP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Configure TCP"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -174,9 +181,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelScenario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelWarning" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelScenario" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">

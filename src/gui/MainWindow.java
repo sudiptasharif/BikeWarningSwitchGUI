@@ -41,7 +41,8 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuExperiment = new javax.swing.JMenu();
         jMenuItemStartExp = new javax.swing.JMenuItem();
         jMenuItemStopExp = new javax.swing.JMenuItem();
-        jMenuSettings = new javax.swing.JMenu();
+        jMenuNetwork = new javax.swing.JMenu();
+        jMenuItemConfigTCP = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bike Warning Switch");
@@ -120,9 +121,9 @@ public class MainWindow extends javax.swing.JFrame {
             jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSwitchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelScenario)
-                    .addComponent(jLabelWarning))
+                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelWarning, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelScenario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSpinnerScenario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,8 +154,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBarSwitch.add(jMenuExperiment);
 
-        jMenuSettings.setText("Settings");
-        jMenuBarSwitch.add(jMenuSettings);
+        jMenuNetwork.setText("Network");
+
+        jMenuItemConfigTCP.setText("Configure TCP");
+        jMenuNetwork.add(jMenuItemConfigTCP);
+
+        jMenuBarSwitch.add(jMenuNetwork);
 
         setJMenuBar(jMenuBarSwitch);
 
@@ -183,17 +188,16 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemStartExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartExpActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Start Menu Item Clicked!", "Info", JOptionPane.INFORMATION_MESSAGE);
         jMenuItemStartExp.setEnabled(false);
         jMenuItemStopExp.setEnabled(true);
         setEnabledGUIComponents(true);
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Stop Menu Item Clicked!", "Info", JOptionPane.INFORMATION_MESSAGE);
         jMenuItemStartExp.setEnabled(true);
         jMenuItemStopExp.setEnabled(false);
         setEnabledGUIComponents(false);
+        //TODO: Need to dump data to a text file
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     /**
@@ -238,9 +242,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelWarning;
     private javax.swing.JMenuBar jMenuBarSwitch;
     private javax.swing.JMenu jMenuExperiment;
+    private javax.swing.JMenuItem jMenuItemConfigTCP;
     private javax.swing.JMenuItem jMenuItemStartExp;
     private javax.swing.JMenuItem jMenuItemStopExp;
-    private javax.swing.JMenu jMenuSettings;
+    private javax.swing.JMenu jMenuNetwork;
     private javax.swing.JPanel jPanelDataTable;
     private javax.swing.JPanel jPanelSwitch;
     private javax.swing.JScrollPane jScrollPaneDataTable;
