@@ -4,10 +4,29 @@
  */
 package experiment;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  *
  * @author sudiptasharif
  */
 public class Experiment {
+    private Calendar startDateTime;
+    private Calendar stopDateTime;
+    private ArrayList<Scenario> scenarios;
     
+    public Experiment() {
+        startDateTime = Calendar.getInstance();
+        scenarios = new ArrayList<>();
+    }
+    
+    public void addScenario(Scenario scenario) {
+        scenarios.add(scenario);
+    }
+    
+    public void stopExperiment() {
+        stopDateTime = Calendar.getInstance();
+        // TODO: need to dump to text file
+    }
 }
