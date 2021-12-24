@@ -117,7 +117,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPaneDataTable" alignment="1" pref="305" max="32767" attributes="0"/>
+              <Component id="jScrollPaneDataTable" alignment="1" pref="308" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -239,6 +239,10 @@
             <Property name="text" type="java.lang.String" value="Warn"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSwitchMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSwitchMouseExited"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

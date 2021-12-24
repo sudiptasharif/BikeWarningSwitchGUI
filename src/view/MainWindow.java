@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import switchutility.SUtils;
@@ -90,7 +91,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanelDataTableLayout.setVerticalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
 
         jPanelSwitch.setBorder(javax.swing.BorderFactory.createTitledBorder("Switch"));
@@ -107,6 +108,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButtonSwitch.setText("Warn");
         jButtonSwitch.setEnabled(false);
+        jButtonSwitch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonSwitchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonSwitchMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelSwitchLayout = new javax.swing.GroupLayout(jPanelSwitch);
         jPanelSwitch.setLayout(jPanelSwitchLayout);
@@ -254,6 +263,15 @@ public class MainWindow extends javax.swing.JFrame {
         
         resetGUIComponents();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
+
+    private void jButtonSwitchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseEntered
+        jButtonSwitch.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jButtonSwitchMouseEntered
+
+    private void jButtonSwitchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseExited
+        jButtonSwitch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR) {
+        });
+    }//GEN-LAST:event_jButtonSwitchMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
