@@ -297,15 +297,16 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void getParticipantInfo() {
-        String participantID = JOptionPane.showInputDialog("Participant ID");
-        while((participantID == null) || (participantID.isBlank()) || (!SUtils.isNumeric(participantID))) {
-            participantID = (participantID == null) || (participantID.isBlank()) ? "' '(blank)" : participantID;
-            participantID = JOptionPane.showInputDialog("Invalid ID: " + participantID + "\nParticipant ID (Numeric)");
+        String participantID = JOptionPane.showInputDialog(SUtils.PARTICIPANT_ID_PROMPT);
+        while(!SUtils.isValidParticipantID(participantID)) {
+            participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
+            participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
-        String participantName = JOptionPane.showInputDialog("Participant Name");
-        while((participantName == null) || (participantName.isBlank()) || (!SUtils.isValidName(participantName))) {
-            participantName = (participantName == null) || (participantName.isBlank()) ? "' '(blank)" : participantName;
-            participantName = JOptionPane.showInputDialog("Invalid Name: " + participantName + "\nParticipant Name (Not Alphanumeric or Blank)");
+        
+        String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
+        while(!SUtils.isValidParticipantName(participantName)) {
+            participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
+            participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
         }
         jTextFieldParticipantID.setText(participantID);
         jTextFieldParticipantName.setText(participantName);
