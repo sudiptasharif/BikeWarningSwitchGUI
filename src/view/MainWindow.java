@@ -4,7 +4,7 @@
  */
 package view;
 
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +37,11 @@ public class MainWindow extends javax.swing.JFrame {
         jSpinnerScenario = new javax.swing.JSpinner();
         jComboBoxWarning = new javax.swing.JComboBox<>();
         jButtonSwitch = new javax.swing.JButton();
+        jPanelParticipant = new javax.swing.JPanel();
+        jLabelParticipantID = new javax.swing.JLabel();
+        jTextFieldParticipantID = new javax.swing.JTextField();
+        jLabelParticipantName = new javax.swing.JLabel();
+        jTextFieldParticipantName = new javax.swing.JTextField();
         jMenuBarSwitch = new javax.swing.JMenuBar();
         jMenuExperiment = new javax.swing.JMenu();
         jMenuItemStartExp = new javax.swing.JMenuItem();
@@ -61,7 +66,7 @@ public class MainWindow extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Experiment", "Scenario", "Warning", "T2", "T3"
+                "#", "Scenario", "Warning", "T2", "T3"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -79,7 +84,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelDataTable.setLayout(jPanelDataTableLayout);
         jPanelDataTableLayout.setHorizontalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
         );
         jPanelDataTableLayout.setVerticalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +119,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabelWarning)
                     .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelSwitchLayout.setVerticalGroup(
@@ -130,6 +135,46 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jButtonSwitch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanelParticipant.setBorder(javax.swing.BorderFactory.createTitledBorder("Participant"));
+
+        jLabelParticipantID.setText("ID:");
+
+        jTextFieldParticipantID.setColumns(5);
+        jTextFieldParticipantID.setEnabled(false);
+
+        jLabelParticipantName.setText("Name:");
+
+        jTextFieldParticipantName.setColumns(20);
+        jTextFieldParticipantName.setEnabled(false);
+
+        javax.swing.GroupLayout jPanelParticipantLayout = new javax.swing.GroupLayout(jPanelParticipant);
+        jPanelParticipant.setLayout(jPanelParticipantLayout);
+        jPanelParticipantLayout.setHorizontalGroup(
+            jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParticipantLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelParticipantName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelParticipantID, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldParticipantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldParticipantID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelParticipantLayout.setVerticalGroup(
+            jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelParticipantLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelParticipantID)
+                    .addComponent(jTextFieldParticipantID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelParticipantName)
+                    .addComponent(jTextFieldParticipantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jMenuExperiment.setMnemonic('V');
@@ -167,11 +212,12 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE))
+                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,9 +225,11 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelParticipant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -197,12 +245,17 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStartExp.setEnabled(true);
         jMenuItemStopExp.setEnabled(false);
         setEnabledGUIComponents(false);
+        
         //TODO: Need to dump data to a text file
+        
+        resetGUIComponents();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
     private javax.swing.JComboBox<String> jComboBoxWarning;
+    private javax.swing.JLabel jLabelParticipantID;
+    private javax.swing.JLabel jLabelParticipantName;
     private javax.swing.JLabel jLabelScenario;
     private javax.swing.JLabel jLabelWarning;
     private javax.swing.JMenuBar jMenuBarSwitch;
@@ -212,10 +265,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemStopExp;
     private javax.swing.JMenu jMenuNetwork;
     private javax.swing.JPanel jPanelDataTable;
+    private javax.swing.JPanel jPanelParticipant;
     private javax.swing.JPanel jPanelSwitch;
     private javax.swing.JScrollPane jScrollPaneDataTable;
     private javax.swing.JSpinner jSpinnerScenario;
     private javax.swing.JTable jTableData;
+    private javax.swing.JTextField jTextFieldParticipantID;
+    private javax.swing.JTextField jTextFieldParticipantName;
     // End of variables declaration//GEN-END:variables
 
     private void setEnabledGUIComponents(boolean enable) {
@@ -223,5 +279,16 @@ public class MainWindow extends javax.swing.JFrame {
         jSpinnerScenario.setEnabled(enable);
         jComboBoxWarning.setEnabled(enable);
         jButtonSwitch.setEnabled(enable);
+        jTextFieldParticipantID.setEnabled(enable);
+        jTextFieldParticipantName.setEnabled(enable);
+    }
+    
+    private void resetGUIComponents() {
+        DefaultTableModel tableModel = (DefaultTableModel)jTableData.getModel();
+        tableModel.setRowCount(0);
+        jSpinnerScenario.setValue(1);
+        jComboBoxWarning.setSelectedIndex(0);
+        jTextFieldParticipantID.setText("");
+        jTextFieldParticipantName.setText("");
     }
 }

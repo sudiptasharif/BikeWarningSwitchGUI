@@ -71,11 +71,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelSwitch" max="32767" attributes="0"/>
-                  <Component id="jPanelDataTable" pref="668" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanelParticipant" max="32767" attributes="0"/>
+                  <Component id="jPanelSwitch" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jPanelDataTable" alignment="0" pref="601" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -86,9 +87,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelDataTable" min="-2" pref="329" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jPanelParticipant" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanelSwitch" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,7 +112,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPaneDataTable" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPaneDataTable" alignment="0" pref="589" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -135,7 +138,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="4">
-                    <Column editable="false" title="Experiment" type="java.lang.Object"/>
+                    <Column editable="false" title="#" type="java.lang.Object"/>
                     <Column editable="false" title="Scenario" type="java.lang.Object"/>
                     <Column editable="false" title="Warning" type="java.lang.Object"/>
                     <Column editable="false" title="T2" type="java.lang.Object"/>
@@ -172,7 +175,7 @@
                       <Component id="jLabelWarning" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxWarning" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jButtonSwitch" min="-2" pref="198" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -234,6 +237,75 @@
         <Component class="javax.swing.JButton" name="jButtonSwitch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Warn"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanelParticipant">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Participant"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelParticipantName" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelParticipantID" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTextFieldParticipantName" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldParticipantID" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelParticipantID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldParticipantID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelParticipantName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldParticipantName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabelParticipantID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldParticipantID">
+          <Properties>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelParticipantName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Name:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldParticipantName">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
