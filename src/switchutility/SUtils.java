@@ -24,7 +24,7 @@ public class SUtils {
     public static final int SERVER_OFF = 0;
     public static final int INVALID_WARNING_CODE = 0;
     public static final String PARTICIPANT_ID_PROMPT = "Participant ID";
-    public static final String PARTICIPANT_ID_PROMPT_WITH_HINT = "Participant ID (Numeric)";
+    public static final String PARTICIPANT_ID_PROMPT_WITH_HINT = "Participant ID (Number)";
     public static final String PARTICIPANT_NAME_PROMPT = "Participant Name";
     public static final String PARTICIPANT_NAME_PROMPT_WITH_HINT = "Participant Name (Not Alphanumeric or Blank)";
     public static final String INVALID_STRING_BLANK = "' '(blank)";
@@ -46,7 +46,7 @@ public class SUtils {
 
     public static boolean isNumeric(String str) {
         try {
-            Integer.parseInt(str);
+            Double.parseDouble(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -72,7 +72,7 @@ public class SUtils {
     }
     
     public static boolean isValidParticipantID(String participantID) {
-        if((participantID == null) || (participantID.isBlank()) || (!isNumeric(participantID.trim()))){
+        if((participantID == null) || (participantID.isBlank()) || (!isInteger(participantID.trim()))){
             return false;
         } else {
             return true;
@@ -85,5 +85,14 @@ public class SUtils {
         } else {
             return true;
         }        
+    }
+    
+    public static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
