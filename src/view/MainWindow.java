@@ -4,7 +4,9 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import switchutility.SUtils;
 
 /**
  *
@@ -238,6 +240,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItemStartExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartExpActionPerformed
         jMenuItemStartExp.setEnabled(false);
         jMenuItemStopExp.setEnabled(true);
+        getParticipantInfo();
         setEnabledGUIComponents(true);
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
@@ -247,6 +250,7 @@ public class MainWindow extends javax.swing.JFrame {
         setEnabledGUIComponents(false);
         
         //TODO: Need to dump data to a text file
+        //log_to_file()
         
         resetGUIComponents();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
@@ -290,5 +294,20 @@ public class MainWindow extends javax.swing.JFrame {
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
+    }
+    
+    private void getParticipantInfo() {
+        String participantID = JOptionPane.showInputDialog("Participant ID");
+        while((participantID == null) || (participantID.isBlank()) || (!SUtils.isNumeric(participantID))) {
+            participantID = (participantID == null) || (participantID.isBlank()) ? "' '(blank)" : participantID;
+            participantID = JOptionPane.showInputDialog("Invalid ID: " + participantID + "\nParticipant ID (Numeric)");
+        }
+        String participantName = JOptionPane.showInputDialog("Participant Name");
+        while((participantName == null) || (participantName.isBlank()) || (!SUtils.isValidName(participantName))) {
+            participantName = (participantName == null) || (participantName.isBlank()) ? "' '(blank)" : participantName;
+            participantName = JOptionPane.showInputDialog("Invalid Name: " + participantName + "\nParticipant Name (Not Alphanumeric or Blank)");
+        }
+        jTextFieldParticipantID.setText(participantID);
+        jTextFieldParticipantName.setText(participantName);
     }
 }

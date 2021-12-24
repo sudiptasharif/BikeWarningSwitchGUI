@@ -13,6 +13,7 @@ import java.util.Date;
  * @author sudiptasharif
  */
 public class SUtils {
+
     public static final String DATE_FORMAT_USER_FRIENDLY = "yyyy-MM-dd hh:mm a";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String DATE_FORMAT_HH_MM_SS_MSSS = "hh:mm:ss.SSS";
@@ -22,8 +23,8 @@ public class SUtils {
     public static final int SERVER_ON = 1;
     public static final int SERVER_OFF = 0;
     public static final int INVALID_WARNING_CODE = 0;
-    
-    public static String formatDate(Calendar calendar, String dateFormatPattern){
+
+    public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
         Date date = calendar.getTime();
@@ -31,8 +32,35 @@ public class SUtils {
         return formattedDate;
     }
 
-    public  static String formatDate(long timeInMillis, String dateFormatPattern) {
+    public static String formatDate(long timeInMillis, String dateFormatPattern) {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
         return formatter.format(new Date(timeInMillis));
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean isValidName(String str) {
+        final int ASCII_A = 65;
+        final int ASCII_Z = 90;
+        final int ASCII_SPACE = 32;
+        int ascii_char;
+        boolean isValid = true;
+        int i = 0;
+        str = str.toUpperCase();
+        while (isValid && i < str.length()) {
+            ascii_char = (int) str.charAt(i);
+            if (!((ascii_char == ASCII_SPACE) || (ascii_char >= ASCII_A && ascii_char <= ASCII_Z))) {
+                isValid = false;
+            }
+            i++;
+        }
+        return isValid;
     }
 }
