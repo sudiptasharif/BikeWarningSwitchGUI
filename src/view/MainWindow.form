@@ -71,12 +71,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanelParticipant" max="32767" attributes="0"/>
-                  <Component id="jPanelSwitch" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jPanelDataTable" alignment="0" pref="601" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jPanelParticipant" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanelSwitch" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanelDataTable" pref="611" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -88,10 +91,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelDataTable" min="-2" pref="329" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanelParticipant" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jPanelSwitch" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jPanelParticipant" max="32767" attributes="0"/>
+                  <Component id="jPanelSwitch" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,7 +116,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPaneDataTable" alignment="0" pref="589" max="32767" attributes="0"/>
+              <Component id="jScrollPaneDataTable" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -137,9 +141,8 @@
             <Component class="javax.swing.JTable" name="jTableData">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="4" rowCount="4">
                     <Column editable="false" title="Sequence #" type="java.lang.Object"/>
-                    <Column editable="false" title="Scenario" type="java.lang.Object"/>
                     <Column editable="false" title="Warning" type="java.lang.Object"/>
                     <Column editable="false" title="T2" type="java.lang.Object"/>
                     <Column editable="false" title="T3" type="java.lang.Object"/>
@@ -164,58 +167,38 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="jSpinnerScenario" alignment="2" min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="jLabelScenario" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jComboBoxWarning" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="jLabelWarning" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="jLabelWarning" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxWarning" alignment="2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButtonSwitch" min="-2" pref="198" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButtonSwitch" pref="200" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabelWarning" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jComboBoxWarning" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelWarning" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelScenario" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jSpinnerScenario" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxWarning" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
-              <Component id="jButtonSwitch" alignment="1" max="32767" attributes="0"/>
+              <Component id="jButtonSwitch" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelScenario">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Scenario"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelWarning">
           <Properties>
             <Property name="text" type="java.lang.String" value="Choose Warning "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinnerScenario">
-          <Properties>
-            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxWarning">
@@ -264,7 +247,7 @@
                       <Component id="jLabelParticipantName" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelParticipantID" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jTextFieldParticipantName" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldParticipantID" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -281,11 +264,12 @@
                       <Component id="jLabelParticipantID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldParticipantID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelParticipantName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldParticipantName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -35,9 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPaneDataTable = new javax.swing.JScrollPane();
         jTableData = new javax.swing.JTable();
         jPanelSwitch = new javax.swing.JPanel();
-        jLabelScenario = new javax.swing.JLabel();
         jLabelWarning = new javax.swing.JLabel();
-        jSpinnerScenario = new javax.swing.JSpinner();
         jComboBoxWarning = new javax.swing.JComboBox<>();
         jButtonSwitch = new javax.swing.JButton();
         jPanelParticipant = new javax.swing.JPanel();
@@ -63,17 +61,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTableData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Sequence #", "Scenario", "Warning", "T2", "T3"
+                "Sequence #", "Warning", "T2", "T3"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -87,7 +85,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelDataTable.setLayout(jPanelDataTableLayout);
         jPanelDataTableLayout.setHorizontalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelDataTableLayout.setVerticalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,12 +94,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanelSwitch.setBorder(javax.swing.BorderFactory.createTitledBorder("Switch"));
 
-        jLabelScenario.setText("Scenario");
-
         jLabelWarning.setText("Choose Warning ");
-
-        jSpinnerScenario.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jSpinnerScenario.setEnabled(false);
 
         jComboBoxWarning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1) Stop + Tone", "(2) Stop + Voice ", "(3) Yeild + Tone ", "(4) Yeild + Voice" }));
         jComboBoxWarning.setEnabled(false);
@@ -123,29 +116,24 @@ public class MainWindow extends javax.swing.JFrame {
             jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSwitchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSpinnerScenario, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScenario))
-                .addGap(145, 145, 145)
-                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabelWarning)
-                    .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelSwitchLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabelWarning)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelSwitchLayout.setVerticalGroup(
             jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSwitchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelWarning, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelScenario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSwitchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSpinnerScenario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
-            .addComponent(jButtonSwitch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelWarning)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxWarning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jButtonSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanelParticipant.setBorder(javax.swing.BorderFactory.createTitledBorder("Participant"));
@@ -169,7 +157,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelParticipantName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelParticipantID, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldParticipantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldParticipantID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,10 +170,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelParticipantID)
                     .addComponent(jTextFieldParticipantID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelParticipantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelParticipantName)
-                    .addComponent(jTextFieldParticipantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTextFieldParticipantName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenuExperiment.setMnemonic('V');
@@ -223,12 +212,14 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,10 +228,10 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanelDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelParticipant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -278,7 +269,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxWarning;
     private javax.swing.JLabel jLabelParticipantID;
     private javax.swing.JLabel jLabelParticipantName;
-    private javax.swing.JLabel jLabelScenario;
     private javax.swing.JLabel jLabelWarning;
     private javax.swing.JMenuBar jMenuBarSwitch;
     private javax.swing.JMenu jMenuExperiment;
@@ -290,7 +280,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelParticipant;
     private javax.swing.JPanel jPanelSwitch;
     private javax.swing.JScrollPane jScrollPaneDataTable;
-    private javax.swing.JSpinner jSpinnerScenario;
     private javax.swing.JTable jTableData;
     private javax.swing.JTextField jTextFieldParticipantID;
     private javax.swing.JTextField jTextFieldParticipantName;
@@ -298,7 +287,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void setEnabledGUIComponents(boolean enable) {
         jTableData.setEnabled(enable);
-        jSpinnerScenario.setEnabled(enable);
         jComboBoxWarning.setEnabled(enable);
         jButtonSwitch.setEnabled(enable);
         jTextFieldParticipantID.setEnabled(enable);
@@ -308,7 +296,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void resetGUIComponents() {
         DefaultTableModel tableModel = (DefaultTableModel)jTableData.getModel();
         tableModel.setRowCount(0);
-        jSpinnerScenario.setValue(1);
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
