@@ -69,7 +69,7 @@ public class MainWindow extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "#", "Scenario", "Warning", "T2", "T3"
+                "Sequence #", "Scenario", "Warning", "T2", "T3"
             }
         ) {
             boolean[] canEdit = new boolean [] {
