@@ -89,14 +89,14 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanelDataTableLayout.setVerticalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
         );
 
         jPanelSwitch.setBorder(javax.swing.BorderFactory.createTitledBorder("Switch"));
 
         jLabelWarning.setText("Choose Warning ");
 
-        jComboBoxWarning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1) Stop + Tone", "(2) Stop + Voice ", "(3) Yeild + Tone ", "(4) Yeild + Voice" }));
+        jComboBoxWarning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1) Stop + Tone", "(2) Stop + Voice ", "(3) Yeild + Tone ", "(4) Yeild + Voice", "(5) None" }));
         jComboBoxWarning.setEnabled(false);
 
         jButtonSwitch.setText("Warn");
@@ -219,7 +219,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE))
+                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
