@@ -30,6 +30,7 @@ public class SUtils {
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
+    public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
 
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";

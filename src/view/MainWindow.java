@@ -6,6 +6,8 @@ package view;
 
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import switchutility.SUtils;
@@ -21,6 +23,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        setComboBoxWarningItems();
     }
 
     private void showTableDataPopUpMenu(MouseEvent e) {
@@ -117,8 +120,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabelWarning.setText("Choose Warning ");
 
-        jComboBoxWarning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(1) Stop + Tone", "(2) Stop + Voice ", "(3) Yeild + Tone ", "(4) Yeild + Voice", "(5) None" }));
         jComboBoxWarning.setEnabled(false);
+        jComboBoxWarning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxWarningActionPerformed(evt);
+            }
+        });
 
         jButtonSwitch.setText("Warn");
         jButtonSwitch.setEnabled(false);
@@ -322,6 +329,15 @@ public class MainWindow extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jTextFieldParticipantNameFocusLost
 
+    private void jComboBoxWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWarningActionPerformed
+        JComboBox cb = (JComboBox)evt.getSource();
+        String warning = (String)cb.getSelectedItem();
+        int warningIndex = cb.getSelectedIndex();
+        System.out.println("Warning Selected: " + warning);
+        System.out.println("Warning Selected Index: " + warningIndex);
+        System.out.println("---------");
+    }//GEN-LAST:event_jComboBoxWarningActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
     private javax.swing.JComboBox<String> jComboBoxWarning;
@@ -375,5 +391,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
         jTextFieldParticipantID.setText(participantID);
         jTextFieldParticipantName.setText(participantName);
+    }
+    
+    private void setComboBoxWarningItems() {
+        String[] items = SUtils.WARNINGS;
+        for(int i = 0; i < items.length; i++) {
+            items[i] = "(" + (i+1) + ") " + items[i]; 
+        }
+        jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }
 }
