@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Cursor;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import switchutility.SUtils;
@@ -21,7 +22,10 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
     }
-
+    
+    private void showTableDataPopUpMenu(MouseEvent e) {
+        jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +35,8 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenuTableData = new javax.swing.JPopupMenu();
+        jMenuItemDelete = new javax.swing.JMenuItem();
         jPanelDataTable = new javax.swing.JPanel();
         jScrollPaneDataTable = new javax.swing.JScrollPane();
         jTableData = new javax.swing.JTable();
@@ -49,6 +55,14 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStopExp = new javax.swing.JMenuItem();
         jMenuNetwork = new javax.swing.JMenu();
         jMenuItemConfigTCP = new javax.swing.JMenuItem();
+
+        jMenuItemDelete.setText("Delete");
+        jMenuItemDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDeleteActionPerformed(evt);
+            }
+        });
+        jPopupMenuTableData.add(jMenuItemDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bike Warning Switch");
@@ -79,6 +93,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jTableData.setEnabled(false);
+        jTableData.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableDataMouseClicked(evt);
+            }
+        });
         jScrollPaneDataTable.setViewportView(jTableData);
 
         javax.swing.GroupLayout jPanelDataTableLayout = new javax.swing.GroupLayout(jPanelDataTable);
@@ -248,10 +268,9 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStartExp.setEnabled(true);
         jMenuItemStopExp.setEnabled(false);
         setEnabledGUIComponents(false);
-        
+
         //TODO: Need to dump data to a text file
         //log_to_file()
-        
         resetGUIComponents();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
@@ -264,6 +283,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButtonSwitchMouseExited
 
+    private void jTableDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDataMouseClicked
+        if (!jTableData.getSelectionModel().isSelectionEmpty() && evt.getButton() == MouseEvent.BUTTON3) {
+            showTableDataPopUpMenu(evt);
+        }
+    }//GEN-LAST:event_jTableDataMouseClicked
+
+    private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
+        ((DefaultTableModel)jTableData.getModel()).removeRow(jTableData.getSelectedRow());
+    }//GEN-LAST:event_jMenuItemDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
     private javax.swing.JComboBox<String> jComboBoxWarning;
@@ -273,12 +302,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarSwitch;
     private javax.swing.JMenu jMenuExperiment;
     private javax.swing.JMenuItem jMenuItemConfigTCP;
+    private javax.swing.JMenuItem jMenuItemDelete;
     private javax.swing.JMenuItem jMenuItemStartExp;
     private javax.swing.JMenuItem jMenuItemStopExp;
     private javax.swing.JMenu jMenuNetwork;
     private javax.swing.JPanel jPanelDataTable;
     private javax.swing.JPanel jPanelParticipant;
     private javax.swing.JPanel jPanelSwitch;
+    private javax.swing.JPopupMenu jPopupMenuTableData;
     private javax.swing.JScrollPane jScrollPaneDataTable;
     private javax.swing.JTable jTableData;
     private javax.swing.JTextField jTextFieldParticipantID;
@@ -292,24 +323,24 @@ public class MainWindow extends javax.swing.JFrame {
         jTextFieldParticipantID.setEnabled(enable);
         jTextFieldParticipantName.setEnabled(enable);
     }
-    
+
     private void resetGUIComponents() {
-        DefaultTableModel tableModel = (DefaultTableModel)jTableData.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) jTableData.getModel();
         tableModel.setRowCount(0);
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
     }
-    
+
     private void getParticipantInfo() {
         String participantID = JOptionPane.showInputDialog(SUtils.PARTICIPANT_ID_PROMPT);
-        while(!SUtils.isValidParticipantID(participantID)) {
+        while (!SUtils.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
-        
+
         String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
-        while(!SUtils.isValidParticipantName(participantName)) {
+        while (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
         }
