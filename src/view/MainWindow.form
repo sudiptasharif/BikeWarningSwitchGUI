@@ -308,6 +308,9 @@
             <Property name="columns" type="int" value="5"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldParticipantIDFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelParticipantName">
           <Properties>
@@ -319,6 +322,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldParticipantNameFocusLost"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

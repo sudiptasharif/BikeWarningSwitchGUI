@@ -24,9 +24,9 @@ public class SUtils {
     public static final int SERVER_OFF = 0;
     public static final int INVALID_WARNING_CODE = 0;
     public static final String PARTICIPANT_ID_PROMPT = "Participant ID";
-    public static final String PARTICIPANT_ID_PROMPT_WITH_HINT = "Participant ID (Number)";
+    public static final String PARTICIPANT_ID_PROMPT_WITH_HINT = "Must be a number";
     public static final String PARTICIPANT_NAME_PROMPT = "Participant Name";
-    public static final String PARTICIPANT_NAME_PROMPT_WITH_HINT = "Participant Name (Not Alphanumeric or Blank)";
+    public static final String PARTICIPANT_NAME_PROMPT_WITH_HINT = "Must not be alphanumeric or blank";
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";

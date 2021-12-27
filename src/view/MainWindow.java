@@ -22,10 +22,11 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
     }
-    
+
     private void showTableDataPopUpMenu(MouseEvent e) {
         jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,11 +163,21 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTextFieldParticipantID.setColumns(5);
         jTextFieldParticipantID.setEnabled(false);
+        jTextFieldParticipantID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldParticipantIDFocusLost(evt);
+            }
+        });
 
         jLabelParticipantName.setText("Name:");
 
         jTextFieldParticipantName.setColumns(20);
         jTextFieldParticipantName.setEnabled(false);
+        jTextFieldParticipantName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldParticipantNameFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelParticipantLayout = new javax.swing.GroupLayout(jPanelParticipant);
         jPanelParticipant.setLayout(jPanelParticipantLayout);
@@ -290,8 +301,26 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableDataMouseClicked
 
     private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
-        ((DefaultTableModel)jTableData.getModel()).removeRow(jTableData.getSelectedRow());
+        ((DefaultTableModel) jTableData.getModel()).removeRow(jTableData.getSelectedRow());
     }//GEN-LAST:event_jMenuItemDeleteActionPerformed
+
+    private void jTextFieldParticipantIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantIDFocusLost
+        String participantID = jTextFieldParticipantID.getText();
+        if (!SUtils.isValidParticipantID(participantID)) {
+            participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
+            JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldParticipantID.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTextFieldParticipantIDFocusLost
+
+    private void jTextFieldParticipantNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantNameFocusLost
+        String participantName = jTextFieldParticipantName.getText();
+        if (!SUtils.isValidParticipantName(participantName)) {
+            participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
+            JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldParticipantName.requestFocusInWindow();
+        }        
+    }//GEN-LAST:event_jTextFieldParticipantNameFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
