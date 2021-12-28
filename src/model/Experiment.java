@@ -14,8 +14,7 @@ import java.util.Calendar;
 public class Experiment {
     private Calendar startDateTime;
     private Calendar stopDateTime;
-    private int participantID;
-    private String participantName;
+    private Participant participant;
     private ArrayList<Warning> warningList;
     
     public Experiment() {
@@ -24,8 +23,7 @@ public class Experiment {
     }
     
     public Experiment(int participantID, String participantName){
-        this.participantID = participantID;
-        this.participantName = participantName;
+        participant = new Participant(participantID, participantName);
         startDateTime = Calendar.getInstance();
         warningList = new ArrayList<>();      
     }
@@ -39,11 +37,11 @@ public class Experiment {
         // TODO: need to dump to text file
     }
     
-    public void setParticipantID(int id) {
-        participantID = id;
+    public void updateParticipantID(int newID) {
+        participant.setId(newID);
     }
     
-    public void setParticipantName(String name) {
-        participantName = name;
+    public void updateParticipantName(String newName) {
+        participant.setName(newName);
     }
 }
