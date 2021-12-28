@@ -34,7 +34,6 @@ public class Experiment {
     
     public void stopExperiment() {
         stopDateTime = Calendar.getInstance();
-        // TODO: need to dump to text file
     }
     
     public void updateParticipantID(int newID) {

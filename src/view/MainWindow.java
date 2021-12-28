@@ -6,12 +6,10 @@ package view;
 
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
-import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Warning;
 import switchutility.SUtils;
 
 /**
