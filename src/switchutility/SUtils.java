@@ -7,7 +7,6 @@ package switchutility;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  *
@@ -31,7 +30,6 @@ public class SUtils {
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
-    public static HashMap<Integer, String> WARNINGS = new HashMap<>();
     
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
@@ -88,23 +86,5 @@ public class SUtils {
         } catch (NumberFormatException e) {
             return false;
         }
-    }
-    
-    public static void setupWarnings() {
-        // ss: Any new warning must be added before "None" warning. 
-        // This warning code must match with what is set in the Android app.       
-        WARNINGS.put(1, "Stop + Tone");
-        WARNINGS.put(2, "Stop + Voice");
-        WARNINGS.put(3, "Yeild + Tone");
-        WARNINGS.put(4, "Yeild + Voice");
-        WARNINGS.put(5, "None");
-    }
-    
-    public static boolean isValidWarningCode(int warningCode) {
-        return (WARNINGS.get(warningCode) != null);
-    }
-    
-    public static boolean isWarningNone(int warningCode) {
-        return WARNINGS.get(warningCode).equalsIgnoreCase("none");
     }
 }
