@@ -336,11 +336,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jComboBoxWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWarningActionPerformed
         JComboBox cb = (JComboBox)evt.getSource();
-        String warning = (String)cb.getSelectedItem();
         int warningIndex = cb.getSelectedIndex();
-        System.out.println("Warning Selected: " + warning);
-        System.out.println("Warning Selected Index: " + warningIndex);
-        System.out.println("---------");
+        updateEnableButtonSwitch(warningIndex+1);
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,5 +403,13 @@ public class MainWindow extends javax.swing.JFrame {
              i++;
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
+    }
+    
+    private void updateEnableButtonSwitch(int warningCode) {
+        if(SUtils.isWarningNone(warningCode)) {
+            jButtonSwitch.setEnabled(false);
+        } else {
+            jButtonSwitch.setEnabled(true); 
+        }
     }
 }

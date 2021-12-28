@@ -100,7 +100,11 @@ public class SUtils {
         WARNINGS.put(5, "None");
     }
     
-    public static boolean isValidWarning(int warningCodeIndex) {
-        return true;
+    public static boolean isValidWarningCode(int warningCode) {
+        return (WARNINGS.get(warningCode) != null);
+    }
+    
+    public static boolean isWarningNone(int warningCode) {
+        return WARNINGS.get(warningCode).equalsIgnoreCase("none");
     }
 }
