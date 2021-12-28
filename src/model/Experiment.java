@@ -14,19 +14,36 @@ import java.util.Calendar;
 public class Experiment {
     private Calendar startDateTime;
     private Calendar stopDateTime;
-    private ArrayList<Scenario> scenarios;
+    private int participantID;
+    private String participantName;
+    private ArrayList<Warning> warningList;
     
     public Experiment() {
         startDateTime = Calendar.getInstance();
-        scenarios = new ArrayList<>();
+        warningList = new ArrayList<>();
     }
     
-    public void addScenario(Scenario scenario) {
-        scenarios.add(scenario);
+    public Experiment(int participantID, String participantName){
+        this.participantID = participantID;
+        this.participantName = participantName;
+        startDateTime = Calendar.getInstance();
+        warningList = new ArrayList<>();      
+    }
+    
+    public void addWarning(Warning warning) {
+        warningList.add(warning);
     }
     
     public void stopExperiment() {
         stopDateTime = Calendar.getInstance();
         // TODO: need to dump to text file
+    }
+    
+    public void setParticipantID(int id) {
+        participantID = id;
+    }
+    
+    public void setParticipantName(String name) {
+        participantName = name;
     }
 }

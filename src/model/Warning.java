@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.HashMap;
 import switchutility.SUtils;
 
 /**
@@ -11,9 +12,10 @@ import switchutility.SUtils;
  * @author sudiptasharif
  */
 public class Warning {
-    private int warningID;
+    private int warningCode;
     private long t2;
     private long t3;
+    public static HashMap<Integer, String> WARNINGS = new HashMap<>();
         
     public Warning(long t2) {
         this.t2 = t2;
@@ -38,4 +40,22 @@ public class Warning {
     public String getStrT3() {
         return SUtils.formatDate(t3, SUtils.DATE_FORMAT_HH_MM_SS_MSSS);
     }
+    
+    public static void setupWarnings() {
+        // ss: Any new warning must be added before "None" warning. 
+        // This warning code must match with what is set in the Android app.       
+        WARNINGS.put(1, "Stop + Tone");
+        WARNINGS.put(2, "Stop + Voice");
+        WARNINGS.put(3, "Yeild + Tone");
+        WARNINGS.put(4, "Yeild + Voice");
+        WARNINGS.put(5, "None");
+    }
+    
+    public static boolean isValidWarningCode(int warningCode) {
+        return (WARNINGS.get(warningCode) != null);
+    }
+    
+    public static boolean isWarningNone(int warningCode) {
+        return WARNINGS.get(warningCode).equalsIgnoreCase("none");
+    }    
 }
