@@ -324,6 +324,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jTextFieldParticipantIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantIDFocusLost
         String participantID = jTextFieldParticipantID.getText();
+        participantID = participantID.trim();
         if (!SUtils.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
@@ -333,6 +334,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jTextFieldParticipantNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantNameFocusLost
         String participantName = jTextFieldParticipantName.getText();
+        participantName = participantName.trim();
         if (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
@@ -391,12 +393,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void getParticipantInfo() {
         String participantID = JOptionPane.showInputDialog(SUtils.PARTICIPANT_ID_PROMPT);
+        participantID = participantID.trim();
         while (!SUtils.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
 
         String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
+        participantName = participantName.trim();
         while (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
