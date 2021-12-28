@@ -6,6 +6,7 @@ package view;
 
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        SUtils.setupWarnings();
         setComboBoxWarningItems();
     }
 
@@ -397,9 +399,11 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setComboBoxWarningItems() {
-        String[] items = SUtils.WARNINGS;
-        for(int i = 0; i < items.length; i++) {
-            items[i] = "(" + (i+1) + ") " + items[i]; 
+        String[] items = new String[SUtils.WARNINGS.size()];
+        int i = 0;
+        for(Map.Entry<Integer, String> warning: SUtils.WARNINGS.entrySet()) {
+             items[i] = "(" + (i+1) + ") " + warning.getValue();
+             i++;
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }
