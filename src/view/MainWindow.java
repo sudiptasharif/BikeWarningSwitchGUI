@@ -25,7 +25,6 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
-        Warning.setupWarnings();
         setComboBoxWarningItems();
     }
 
@@ -397,17 +396,16 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setComboBoxWarningItems() {
-        String[] items = new String[Warning.WARNINGS.size()];
-        int i = 0;
-        for(Map.Entry<Integer, String> warning: Warning.WARNINGS.entrySet()) {
-             items[i] = "(" + (i+1) + ") " + warning.getValue();
+        String[] items = SUtils.WARNINGS;
+        for(int i = 0; i < items.length; i++) {
+             items[i] = "(" + (i+1) + ") " + items[i];
              i++;
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }
     
     private void updateEnableButtonSwitch(int warningCode) {
-        if(Warning.isWarningNone(warningCode)) {
+        if(SUtils.isWarningNone(warningCode)) {
             jButtonSwitch.setEnabled(false);
         } else {
             jButtonSwitch.setEnabled(true); 
