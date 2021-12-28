@@ -318,7 +318,7 @@ public class MainWindow extends javax.swing.JFrame {
         String participantID = jTextFieldParticipantID.getText();
         if (!SUtils.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
-            JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantID.requestFocusInWindow();
         }
     }//GEN-LAST:event_jTextFieldParticipantIDFocusLost

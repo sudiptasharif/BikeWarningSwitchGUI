@@ -31,7 +31,7 @@ public class SUtils {
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
     public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
-
+    
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
@@ -73,19 +73,11 @@ public class SUtils {
     }
     
     public static boolean isValidParticipantID(String participantID) {
-        if((participantID == null) || (participantID.isBlank()) || (!isInteger(participantID.trim()))){
-            return false;
-        } else {
-            return true;
-        }
+        return !((participantID == null) || (participantID.isBlank()) || (!isInteger(participantID.trim())));
     }
     
     public static boolean isValidParticipantName(String participantName) {
-        if((participantName == null) || (participantName.isBlank()) || (!isValidName(participantName.trim()))){
-            return false;
-        } else {
-            return true;
-        }        
+        return !((participantName == null) || (participantName.isBlank()) || (!isValidName(participantName.trim())));        
     }
     
     public static boolean isInteger(String str) {
