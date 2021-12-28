@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.MainWindowController;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -18,6 +19,7 @@ import switchutility.SUtils;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    private MainWindowController mainWindowController;
     /**
      * Creates new form MainWindow
      */
@@ -138,6 +140,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButtonSwitchMouseExited(evt);
+            }
+        });
+        jButtonSwitch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSwitchActionPerformed(evt);
             }
         });
 
@@ -283,6 +290,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStopExp.setEnabled(true);
         getParticipantInfo();
         setEnabledGUIComponents(true);
+        mainWindowController = new MainWindowController(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText(), jTableData);
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed
@@ -337,6 +345,10 @@ public class MainWindow extends javax.swing.JFrame {
         int warningIndex = cb.getSelectedIndex();
         updateEnableButtonSwitch(warningIndex+1);
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
+
+    private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSwitchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
