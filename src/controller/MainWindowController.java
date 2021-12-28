@@ -24,4 +24,12 @@ public class MainWindowController {
         modelExperiment = experiment;
         viewDataTable = dataTable;
     }
+    
+    public void updateParticipantID(int newID) {
+        modelExperiment.updateParticipantID(newID);
+    }
+    
+    public void updateParticipantName(String newName) {
+        modelExperiment.updateParticipantName(newName);
+    }   
 }

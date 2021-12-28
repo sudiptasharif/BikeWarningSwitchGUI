@@ -330,6 +330,7 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantID.requestFocusInWindow();
         }
+        mainWindowController.updateParticipantID(Integer.parseInt(participantID));
     }//GEN-LAST:event_jTextFieldParticipantIDFocusLost
 
     private void jTextFieldParticipantNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantNameFocusLost
@@ -339,7 +340,8 @@ public class MainWindow extends javax.swing.JFrame {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantName.requestFocusInWindow();
-        }        
+        }   
+        mainWindowController.updateParticipantName(participantName);
     }//GEN-LAST:event_jTextFieldParticipantNameFocusLost
 
     private void jComboBoxWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWarningActionPerformed
