@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import model.Experiment;
 import model.ExperimentTableModel;
 import switchutility.SUtils;
@@ -28,7 +27,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         setComboBoxWarningItems();
-        setExperimentTableModel();
+        setEmptyExperimentTableModel();
     }
 
     private void showTableDataPopUpMenu(MouseEvent e) {
@@ -368,8 +367,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void resetGUIComponents() {
-        ExperimentTableModel tableModel = new ExperimentTableModel(0);
-        jTableData.setModel(tableModel);
+        setEmptyExperimentTableModel();
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
@@ -409,7 +407,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
-    private void setExperimentTableModel() {
+    private void setEmptyExperimentTableModel() {
         ExperimentTableModel tableModel = new ExperimentTableModel(0);
         jTableData.setModel(tableModel);
     }
