@@ -3,3 +3,4 @@ build/*
 *.mf
 nbproject/*
 test/*
+/dist/

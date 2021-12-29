@@ -30,6 +30,7 @@ public class SUtils {
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
     public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
+    public static final int DEFAULT_WARNING_CODE = 1;
     
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
@@ -94,13 +95,5 @@ public class SUtils {
     
     public static boolean isWarningNone(int warningCode) {
         return (isValidWarningCode(warningCode) && WARNINGS[warningCode-1].equalsIgnoreCase("none"));
-    }
-    
-    public String getComboBoxStyledWarning(int code) {
-        String result = "";
-        if(isValidWarningCode(code)) {
-            result = "("+code+") " + WARNINGS[code-1];
-        }
-        return result;
     }
 }

@@ -4,9 +4,9 @@
  */
 package controller;
 
-import java.awt.Cursor;
 import javax.swing.JTable;
 import model.Experiment;
+import model.ExperimentTableModel;
 import model.Warning;
 import switchutility.SUtils;
 
@@ -22,7 +22,7 @@ public class MainWindowController {
     public MainWindowController(Experiment experiment, JTable dataTable) {
         modelExperiment = experiment;
         viewDataTable = dataTable;
-        selectedWarningCode = SUtils.INVALID_WARNING_CODE;
+        selectedWarningCode = SUtils.DEFAULT_WARNING_CODE;
     }
     
     public void updateParticipantID(int newID) {
@@ -46,10 +46,18 @@ public class MainWindowController {
             // TODO: send warning signal and get t3
         }
         modelExperiment.addWarning(warning);
+        updateTableData();
     }
     
-    private void updateViewDataTable() {
-        //viewDataTable.setMo
+    private void updateTableData() {
+        int totalRecords = modelExperiment.getWarningListCount();
+        ExperimentTableModel tableModel = new ExperimentTableModel(totalRecords);
+        Warning warning;
+        for(int i = 0; i < totalRecords; i++) {
+            warning = modelExperiment.getWarning(i);
+            tableModel.setRowData(i, warning);
+        }
+        viewDataTable.setModel(tableModel);
     }
     
 }

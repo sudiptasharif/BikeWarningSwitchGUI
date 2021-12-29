@@ -48,4 +48,15 @@ public class ExperimentTableModel extends AbstractTableModel{
     public String getColumnName(int col) {
         return columnNames[col];
     }
+    
+    public void setRowData(int row, Warning warning) {
+        //Sequence #
+        setValueAt(row+1, row, 0);
+        //Warning
+        setValueAt(warning.geWarningStrForTable(), row, 1);
+        //T2
+        setValueAt(warning.getStrT2(), row, 2);
+        //T3
+        setValueAt(warning.getStrT3(), row, 3);
+    }
 }

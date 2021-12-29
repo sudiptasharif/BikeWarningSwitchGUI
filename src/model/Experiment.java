@@ -47,4 +47,8 @@ public class Experiment {
     public int getWarningListCount() {
         return warningList.size();
     }
+    
+    public Warning getWarning(int index) {
+        return warningList.get(index);
+    }
 }
