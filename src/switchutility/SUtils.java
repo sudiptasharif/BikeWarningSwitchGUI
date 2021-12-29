@@ -96,12 +96,4 @@ public class SUtils {
     public static boolean isWarningNone(int warningCode) {
         return (isValidWarningCode(warningCode) && WARNINGS[warningCode-1].equalsIgnoreCase("none"));
     }
-    
-    public static String getWarningNameByCode(int warningCode) {
-        String name = "";
-        if(isValidWarningCode(warningCode)) {
-            name = WARNINGS[warningCode-1];
-        }
-        return name;
-    }
 }

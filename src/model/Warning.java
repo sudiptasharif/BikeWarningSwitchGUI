@@ -41,10 +41,7 @@ public class Warning {
     }
 
     public String geWarningStrForTable() {
-        String a = "(" + warningCode + ") ";
-        String b = SUtils.getWarningNameByCode(warningCode);
-        String c = a + b;
-        return c;
+        return "(" + warningCode + ") " + SUtils.WARNINGS[warningCode - 1];
 
     }
 }
