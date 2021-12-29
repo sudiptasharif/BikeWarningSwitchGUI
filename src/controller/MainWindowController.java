@@ -7,6 +7,7 @@ package controller;
 import java.awt.Cursor;
 import javax.swing.JTable;
 import model.Experiment;
+import model.Warning;
 import switchutility.SUtils;
 
 /**
@@ -34,6 +35,21 @@ public class MainWindowController {
     
     public void updateSelectedWarningCode(int code) {
         selectedWarningCode = code;
+    }
+    
+    public void processWarningRequest(){
+        Warning warning;
+        if(SUtils.isWarningNone(selectedWarningCode)) {
+            warning = new Warning(selectedWarningCode, SUtils.DEFAULT_MILLISECOND);
+        } else {
+            warning = new Warning(selectedWarningCode, System.currentTimeMillis());
+            // TODO: send warning signal and get t3
+        }
+        modelExperiment.addWarning(warning);
+    }
+    
+    private void updateViewDataTable() {
+        //viewDataTable.setMo
     }
     
 }

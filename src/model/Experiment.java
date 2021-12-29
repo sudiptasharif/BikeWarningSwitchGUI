@@ -43,4 +43,8 @@ public class Experiment {
     public void updateParticipantName(String newName) {
         participant.setName(newName);
     }
+    
+    public int getWarningListCount() {
+        return warningList.size();
+    }
 }

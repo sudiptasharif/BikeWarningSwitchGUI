@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Experiment;
+import model.ExperimentTableModel;
 import switchutility.SUtils;
 
 /**
@@ -27,6 +28,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         setComboBoxWarningItems();
+        setExperimentTableModel();
     }
 
     private void showTableDataPopUpMenu(MouseEvent e) {
@@ -83,25 +85,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jScrollPaneDataTable.setPreferredSize(new java.awt.Dimension(480, 290));
 
-        jTableData.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Sequence #", "Warning", "T2", "T3"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jTableData.setEnabled(false);
         jTableData.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableData.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -317,7 +300,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableDataMouseClicked
 
     private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
-        ((DefaultTableModel) jTableData.getModel()).removeRow(jTableData.getSelectedRow());
+        //((DefaultTableModel) jTableData.getModel()).removeRow(jTableData.getSelectedRow());
     }//GEN-LAST:event_jMenuItemDeleteActionPerformed
 
     private void jTextFieldParticipantIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantIDFocusLost
@@ -350,7 +333,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
-        // TODO add your handling code here:
+        mainWindowController.processWarningRequest();
     }//GEN-LAST:event_jButtonSwitchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,8 +368,8 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void resetGUIComponents() {
-        DefaultTableModel tableModel = (DefaultTableModel) jTableData.getModel();
-        tableModel.setRowCount(0);
+        ExperimentTableModel tableModel = new ExperimentTableModel(0);
+        jTableData.setModel(tableModel);
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
@@ -424,5 +407,10 @@ public class MainWindow extends javax.swing.JFrame {
         } else {
             jButtonSwitch.setEnabled(true); 
         }
+    }
+    
+    private void setExperimentTableModel() {
+        ExperimentTableModel tableModel = new ExperimentTableModel(0);
+        jTableData.setModel(tableModel);
     }
 }
