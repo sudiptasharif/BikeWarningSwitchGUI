@@ -4,8 +4,10 @@
  */
 package controller;
 
+import java.awt.Cursor;
 import javax.swing.JTable;
 import model.Experiment;
+import switchutility.SUtils;
 
 /**
  *
@@ -14,15 +16,12 @@ import model.Experiment;
 public class MainWindowController {
     private JTable viewDataTable;
     private Experiment modelExperiment;
-    
-    public MainWindowController(int participantID, String participantName, JTable dataTable){
-        modelExperiment = new Experiment(participantID, participantName);
-        viewDataTable = dataTable;
-    }
+    private int selectedWarningCode;
     
     public MainWindowController(Experiment experiment, JTable dataTable) {
         modelExperiment = experiment;
         viewDataTable = dataTable;
+        selectedWarningCode = SUtils.INVALID_WARNING_CODE;
     }
     
     public void updateParticipantID(int newID) {
@@ -31,5 +30,10 @@ public class MainWindowController {
     
     public void updateParticipantName(String newName) {
         modelExperiment.updateParticipantName(newName);
-    }   
+    }  
+    
+    public void updateSelectedWarningCode(int code) {
+        selectedWarningCode = code;
+    }
+    
 }

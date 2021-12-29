@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Experiment;
 import switchutility.SUtils;
 
 /**
@@ -290,16 +291,13 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStopExp.setEnabled(true);
         getParticipantInfo();
         setEnabledGUIComponents(true);
-        mainWindowController = new MainWindowController(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText(), jTableData);
+        mainWindowController = new MainWindowController(new Experiment(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText()), jTableData);
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed
         jMenuItemStartExp.setEnabled(true);
         jMenuItemStopExp.setEnabled(false);
         setEnabledGUIComponents(false);
-
-        //TODO: Need to dump data to a text file
-        //log_to_file()
         resetGUIComponents();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
@@ -348,6 +346,7 @@ public class MainWindow extends javax.swing.JFrame {
         JComboBox cb = (JComboBox)evt.getSource();
         int warningIndex = cb.getSelectedIndex();
         updateEnableButtonSwitch(warningIndex+1);
+        mainWindowController.updateSelectedWarningCode(warningIndex+1);
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
@@ -415,7 +414,6 @@ public class MainWindow extends javax.swing.JFrame {
         String[] items = SUtils.WARNINGS;
         for(int i = 0; i < items.length; i++) {
              items[i] = "(" + (i+1) + ") " + items[i];
-             i++;
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }
