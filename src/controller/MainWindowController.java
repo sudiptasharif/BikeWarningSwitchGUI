@@ -35,16 +35,16 @@ public class MainWindowController {
     
     public void updateSelectedWarningCode(int code) {
         selectedWarningCode = code;
+        if(SUtils.isWarningNone(selectedWarningCode)) {
+            Warning warning = new Warning(selectedWarningCode, SUtils.DEFAULT_T);
+            modelExperiment.addWarning(warning);
+            updateTableData();
+        }
     }
     
-    public void processWarningRequest(){
-        Warning warning;
-        if(SUtils.isWarningNone(selectedWarningCode)) {
-            warning = new Warning(selectedWarningCode, SUtils.DEFAULT_T);
-        } else {
-            warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
-            // TODO: send warning signal and get t3
-        }
+    public void processAlertWarningRequests(){
+        Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
+        // TODO: send warning signal and get t3
         modelExperiment.addWarning(warning);
         updateTableData();
     }

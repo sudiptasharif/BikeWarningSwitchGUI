@@ -332,7 +332,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
-        mainWindowController.processWarningRequest();
+        mainWindowController.processAlertWarningRequests();
     }//GEN-LAST:event_jButtonSwitchActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
