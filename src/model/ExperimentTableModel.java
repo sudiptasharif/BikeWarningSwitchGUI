@@ -55,8 +55,8 @@ public class ExperimentTableModel extends AbstractTableModel{
         //Warning
         setValueAt(warning.geWarningStrForTable(), row, 1);
         //T2
-        setValueAt(warning.getStrT2(), row, 2);
+        setValueAt(warning.getT2(), row, 2);
         //T3
-        setValueAt(warning.getStrT3(), row, 3);
+        setValueAt(warning.getT3(), row, 3);
     }
 }

@@ -40,9 +40,9 @@ public class MainWindowController {
     public void processWarningRequest(){
         Warning warning;
         if(SUtils.isWarningNone(selectedWarningCode)) {
-            warning = new Warning(selectedWarningCode, SUtils.DEFAULT_MILLISECOND);
+            warning = new Warning(selectedWarningCode, SUtils.DEFAULT_T);
         } else {
-            warning = new Warning(selectedWarningCode, System.currentTimeMillis());
+            warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
             // TODO: send warning signal and get t3
         }
         modelExperiment.addWarning(warning);

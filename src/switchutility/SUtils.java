@@ -16,7 +16,6 @@ public class SUtils {
     public static final String DATE_FORMAT_USER_FRIENDLY = "yyyy-MM-dd hh:mm a";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String DATE_FORMAT_HH_MM_SS_MSSS = "hh:mm:ss.SSS";
-    public static final long DEFAULT_MILLISECOND = 0;
     public static final String CONNECTION_SUCCESS = "Connection SUCCESSFUL\n";
     public static final String CONNECTION_FAILURE = "Connection FAILED\n\nMake sure server is on\nIn App Press Button: START LISTENING\n";
     public static final int SERVER_ON = 1;
@@ -31,6 +30,7 @@ public class SUtils {
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
     public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
     public static final int DEFAULT_WARNING_CODE = 1;
+    public static final String DEFAULT_T = "--";
     
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
