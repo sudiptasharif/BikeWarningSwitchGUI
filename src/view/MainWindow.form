@@ -20,6 +20,18 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBarSwitch">
       <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenuNetwork">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Network"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConfigTCP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Configure TCP"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuExperiment">
           <Properties>
             <Property name="mnemonic" type="int" value="86"/>
@@ -42,18 +54,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemStopExpActionPerformed"/>
               </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuNetwork">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Network"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConfigTCP">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Configure TCP"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

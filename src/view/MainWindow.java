@@ -58,11 +58,11 @@ public class MainWindow extends javax.swing.JFrame {
         jLabelParticipantName = new javax.swing.JLabel();
         jTextFieldParticipantName = new javax.swing.JTextField();
         jMenuBarSwitch = new javax.swing.JMenuBar();
+        jMenuNetwork = new javax.swing.JMenu();
+        jMenuItemConfigTCP = new javax.swing.JMenuItem();
         jMenuExperiment = new javax.swing.JMenu();
         jMenuItemStartExp = new javax.swing.JMenuItem();
         jMenuItemStopExp = new javax.swing.JMenuItem();
-        jMenuNetwork = new javax.swing.JMenu();
-        jMenuItemConfigTCP = new javax.swing.JMenuItem();
 
         jMenuItemDelete.setText("Delete");
         jMenuItemDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +208,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jMenuNetwork.setText("Network");
+
+        jMenuItemConfigTCP.setText("Configure TCP");
+        jMenuNetwork.add(jMenuItemConfigTCP);
+
+        jMenuBarSwitch.add(jMenuNetwork);
+
         jMenuExperiment.setMnemonic('V');
         jMenuExperiment.setText("Experiment");
 
@@ -229,13 +236,6 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuExperiment.add(jMenuItemStopExp);
 
         jMenuBarSwitch.add(jMenuExperiment);
-
-        jMenuNetwork.setText("Network");
-
-        jMenuItemConfigTCP.setText("Configure TCP");
-        jMenuNetwork.add(jMenuItemConfigTCP);
-
-        jMenuBarSwitch.add(jMenuNetwork);
 
         setJMenuBar(jMenuBarSwitch);
 
