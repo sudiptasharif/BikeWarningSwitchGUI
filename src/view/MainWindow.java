@@ -306,19 +306,24 @@ public class MainWindow extends javax.swing.JFrame {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantID.requestFocusInWindow();
+        } else {
+            jTextFieldParticipantID.setText(participantID);
+            mainWindowController.updateParticipantID(Integer.parseInt(participantID));
         }
-        mainWindowController.updateParticipantID(Integer.parseInt(participantID));
     }//GEN-LAST:event_jTextFieldParticipantIDFocusLost
 
     private void jTextFieldParticipantNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantNameFocusLost
         String participantName = jTextFieldParticipantName.getText();
         participantName = participantName.trim();
+        participantName = participantName.replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
         if (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantName.requestFocusInWindow();
-        }   
-        mainWindowController.updateParticipantName(participantName);
+        } else {
+            jTextFieldParticipantName.setText(participantName);
+            mainWindowController.updateParticipantName(participantName);
+        }    
     }//GEN-LAST:event_jTextFieldParticipantNameFocusLost
 
     private void jComboBoxWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWarningActionPerformed
@@ -380,6 +385,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
         participantName = participantName.trim();
+        participantName = participantName.replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
         while (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);

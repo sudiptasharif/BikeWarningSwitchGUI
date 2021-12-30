@@ -31,6 +31,7 @@ public class SUtils {
     public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
+    public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
     
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
