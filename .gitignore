@@ -4,3 +4,5 @@ build/*
 nbproject/*
 test/*
 /dist/
+.DS_Store                                                                                                                               
+src/.DS_Store

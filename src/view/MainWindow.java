@@ -277,6 +277,8 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStopExp.setEnabled(false);
         setEnabledGUIComponents(false);
         resetGUIComponents();
+        mainWindowController.stopExperiment();
+        mainWindowController.saveExperiment();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     private void jButtonSwitchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseEntered

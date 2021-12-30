@@ -64,4 +64,12 @@ public class MainWindowController {
         modelExperiment.removeWarning(rowIndex);
         updateTableData();
     }
+    
+    public void stopExperiment(){
+        modelExperiment.stopExperiment();
+    }
+        
+    public void saveExperiment() {
+        
+    }
 }
