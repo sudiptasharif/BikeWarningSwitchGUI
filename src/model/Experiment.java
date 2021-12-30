@@ -51,4 +51,8 @@ public class Experiment {
     public Warning getWarning(int index) {
         return warningList.get(index);
     }
+    
+    public void removeWarning(int index) {
+        warningList.remove(index);
+    }
 }

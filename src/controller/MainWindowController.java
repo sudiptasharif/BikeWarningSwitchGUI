@@ -60,4 +60,8 @@ public class MainWindowController {
         viewDataTable.setModel(tableModel);
     }
     
+    public void deleteRow(int rowIndex) {
+        modelExperiment.removeWarning(rowIndex);
+        updateTableData();
+    }
 }

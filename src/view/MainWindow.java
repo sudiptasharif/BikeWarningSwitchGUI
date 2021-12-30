@@ -299,7 +299,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableDataMouseClicked
 
     private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
-        //((DefaultTableModel) jTableData.getModel()).removeRow(jTableData.getSelectedRow());
+        int rowIndex = jTableData.getSelectedRow();
+        mainWindowController.deleteRow(rowIndex);
     }//GEN-LAST:event_jMenuItemDeleteActionPerformed
 
     private void jTextFieldParticipantIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantIDFocusLost
