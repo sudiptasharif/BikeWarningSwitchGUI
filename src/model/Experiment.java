@@ -6,6 +6,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import switchutility.SUtils;
 
 /**
  *
@@ -54,5 +55,14 @@ public class Experiment {
     
     public void removeWarning(int index) {
         warningList.remove(index);
+    }
+    
+    public String getExperimentName() {
+        String experimentName = "";
+        String participantID = participant.getId() + "";
+        String participantName = participant.getName().replaceAll(" ", "_");
+        String startExpTimeStr = SUtils.formatDate(startDateTime, SUtils.DATE_FORMAT_USER_FRIENDLY);
+        experimentName = participantID + "_" + participantName + "_" + startExpTimeStr;
+        return experimentName;
     }
 }

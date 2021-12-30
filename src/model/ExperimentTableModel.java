@@ -5,16 +5,18 @@
 package model;
 
 import javax.swing.table.AbstractTableModel;
+import switchutility.SUtils;
 
 /**
  *
  * @author sudiptasharif
  */
 public class ExperimentTableModel extends AbstractTableModel{
-    private final String[] columnNames = {"Sequence #", "Warning", "T2", "T3"};
+    private String[] columnNames;
     private Object[][] data;
 
     public ExperimentTableModel(int totalRecords) {
+        columnNames = SUtils.getAllTableDataHeaders();
         data = new Object[totalRecords][columnNames.length];
     }
     

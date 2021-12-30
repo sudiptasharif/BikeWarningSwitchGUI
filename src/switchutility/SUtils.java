@@ -32,7 +32,9 @@ public class SUtils {
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
-    
+    public static final String CSV_ROOT_FOLDER = "participant_data/";
+    private static final String[] TABLE_DATA_HEADERS = {"Sequence #", "Warning", "T2", "T3"};
+
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
@@ -72,15 +74,15 @@ public class SUtils {
         }
         return isValid;
     }
-    
+
     public static boolean isValidParticipantID(String participantID) {
         return !((participantID == null) || (participantID.isBlank()) || (!isInteger(participantID.trim())));
     }
-    
+
     public static boolean isValidParticipantName(String participantName) {
-        return !((participantName == null) || (participantName.isBlank()) || (!isValidName(participantName.trim())));        
+        return !((participantName == null) || (participantName.isBlank()) || (!isValidName(participantName.trim())));
     }
-    
+
     public static boolean isInteger(String str) {
         try {
             Integer.parseInt(str);
@@ -89,12 +91,20 @@ public class SUtils {
             return false;
         }
     }
-    
+
     public static boolean isValidWarningCode(int warningCode) {
         return ((warningCode >= 1 && warningCode <= WARNINGS.length));
     }
-    
+
     public static boolean isWarningNone(int warningCode) {
-        return (isValidWarningCode(warningCode) && WARNINGS[warningCode-1].equalsIgnoreCase("none"));
+        return (isValidWarningCode(warningCode) && WARNINGS[warningCode - 1].equalsIgnoreCase("none"));
     }
+    
+    public static String[] getAllTableDataHeaders() {
+        String[] headers = new String[TABLE_DATA_HEADERS.length];
+        for(int i = 0; i < headers.length; i++) {
+            headers[i] = TABLE_DATA_HEADERS[i];
+        }
+        return headers;
+    } 
 }
