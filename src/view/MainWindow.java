@@ -30,10 +30,6 @@ public class MainWindow extends javax.swing.JFrame {
         setEmptyExperimentTableModel();
     }
 
-    private void showTableDataPopUpMenu(MouseEvent e) {
-        jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -411,5 +407,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void setEmptyExperimentTableModel() {
         ExperimentTableModel tableModel = new ExperimentTableModel(0);
         jTableData.setModel(tableModel);
+    }
+    
+    private void showTableDataPopUpMenu(MouseEvent e) {
+        jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
     }
 }
