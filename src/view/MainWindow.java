@@ -385,9 +385,7 @@ public class MainWindow extends javax.swing.JFrame {
             participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
 
-        String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
-        participantName = participantName.trim();
-        participantName = participantName.replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
+        String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT).trim().replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
         while (!SUtils.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
