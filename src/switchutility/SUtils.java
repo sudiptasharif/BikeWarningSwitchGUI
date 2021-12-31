@@ -107,4 +107,8 @@ public class SUtils {
         }
         return headers;
     } 
+    
+    public static boolean isOSWindows() {
+        return System.getProperty("os.name").toLowerCase().startsWith("windows");
+    }
 }
