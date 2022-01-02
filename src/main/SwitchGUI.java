@@ -44,39 +44,8 @@ public class SwitchGUI {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(() -> {
-//            new MainWindow().setVisible(true);
-//        });        
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        if (SUtils.isOSWindows()) {
-            System.out.println("OS: Windows");
-            processBuilder.command("cmd.exe", "/c", "adb devices -l");
-        } else {
-            System.out.println("OS: Mac OS");
-            processBuilder.command("zsh", "-c", "adb devices -l");
-        }
-
-        try {
-            Process process = processBuilder.start();
-            StringBuilder output = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
-            }
-            int exitVal = process.waitFor();
-            if (exitVal == 0) {
-                System.out.println("Success!");
-                System.out.println(output);
-                System.exit(0);
-            } else {
-                System.out.println("Abnormal: Exit Val = " + exitVal);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainWindow().setVisible(true);
+        });        
     }
-
 }
