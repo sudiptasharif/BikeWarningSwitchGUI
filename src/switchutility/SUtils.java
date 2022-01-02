@@ -28,13 +28,11 @@ public class SUtils {
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
-    
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
     public static final String CSV_ROOT_FOLDER = "participant_data/";
-    private static final String[] TABLE_DATA_HEADERS = {"Sequence #", "Warning", "T2", "T3"};
-
+    
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
@@ -91,14 +89,6 @@ public class SUtils {
             return false;
         }
     }
-
-    public static String[] getAllTableDataHeaders() {
-        String[] headers = new String[TABLE_DATA_HEADERS.length];
-        for(int i = 0; i < headers.length; i++) {
-            headers[i] = TABLE_DATA_HEADERS[i];
-        }
-        return headers;
-    } 
     
     public static boolean isOSWindows() {
         return System.getProperty("os.name").toLowerCase().startsWith("windows");

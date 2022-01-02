@@ -88,7 +88,7 @@ public class MainWindowController {
     }
 
     private List<String[]> convertExperimentDataToArrayList() {
-        String[] tableHeaders = SUtils.getAllTableDataHeaders();
+        String[] tableHeaders = ExperimentTableModel.getAllTableDataHeaders();
         String[] columnValues;
         String t;
         int rowCount = modelExperiment.getWarningListCount();
