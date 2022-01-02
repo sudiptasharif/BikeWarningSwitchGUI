@@ -28,7 +28,7 @@ public class SUtils {
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
-    private static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
+    
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
@@ -92,14 +92,6 @@ public class SUtils {
         }
     }
 
-    public static boolean isValidWarningCode(int warningCode) {
-        return ((warningCode >= 1 && warningCode <= WARNINGS.length));
-    }
-
-    public static boolean isWarningNone(int warningCode) {
-        return (isValidWarningCode(warningCode) && WARNINGS[warningCode - 1].equalsIgnoreCase("none"));
-    }
-    
     public static String[] getAllTableDataHeaders() {
         String[] headers = new String[TABLE_DATA_HEADERS.length];
         for(int i = 0; i < headers.length; i++) {
@@ -110,17 +102,5 @@ public class SUtils {
     
     public static boolean isOSWindows() {
         return System.getProperty("os.name").toLowerCase().startsWith("windows");
-    }
-    
-    public static String[] getAllWarnings() {
-        String[] warningList = new String[WARNINGS.length];
-        for(int i = 0; i < warningList.length; i++) {
-            warningList[i] = WARNINGS[i];
-        }
-        return warningList;
-    }
-    
-    public static String getWarningByCode(int warningCode) {
-        return isValidWarningCode(warningCode) ? WARNINGS[warningCode-1] : "";
     }
 }

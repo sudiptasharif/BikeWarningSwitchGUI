@@ -10,6 +10,7 @@ import switchutility.SUtils;
  * @author sudiptasharif
  */
 public class Warning {
+    private static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
     private int warningCode;
     private String t2;
     private String t3;
@@ -33,7 +34,27 @@ public class Warning {
     }
 
     public String geWarningStrForTable() {
-        return "(" + warningCode + ") " + SUtils.getWarningByCode(warningCode);
+        return "(" + warningCode + ") " + getWarningByCode(warningCode);
 
     }
+    
+    public static boolean isValidWarningCode(int warningCode) {
+        return ((warningCode >= 1 && warningCode <= WARNINGS.length));
+    }
+
+    public static boolean isWarningNone(int warningCode) {
+        return (isValidWarningCode(warningCode) && WARNINGS[warningCode - 1].equalsIgnoreCase("none"));
+    }  
+    
+    public static String[] getAllWarnings() {
+        String[] warningList = new String[WARNINGS.length];
+        for(int i = 0; i < warningList.length; i++) {
+            warningList[i] = WARNINGS[i];
+        }
+        return warningList;
+    }
+    
+    public static String getWarningByCode(int warningCode) {
+        return isValidWarningCode(warningCode) ? WARNINGS[warningCode-1] : "";
+    }    
 }

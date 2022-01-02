@@ -42,7 +42,7 @@ public class MainWindowController {
 
     public void updateSelectedWarningCode(int code) {
         selectedWarningCode = code;
-        if (SUtils.isWarningNone(selectedWarningCode)) {
+        if (Warning.isWarningNone(selectedWarningCode)) {
             Warning warning = new Warning(selectedWarningCode, SUtils.DEFAULT_T);
             modelExperiment.addWarning(warning);
             updateTableData();

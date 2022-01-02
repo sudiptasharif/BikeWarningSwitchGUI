@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Experiment;
 import model.ExperimentTableModel;
+import model.Warning;
 import switchutility.SUtils;
 
 /**
@@ -395,7 +396,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setComboBoxWarningItems() {
-        String[] items = SUtils.getAllWarnings();
+        String[] items = Warning.getAllWarnings();
         for(int i = 0; i < items.length; i++) {
              items[i] = "(" + (i+1) + ") " + items[i];
         }
@@ -403,7 +404,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void updateEnableButtonSwitch(int warningCode) {
-        if(SUtils.isWarningNone(warningCode)) {
+        if(Warning.isWarningNone(warningCode)) {
             jButtonSwitch.setEnabled(false);
         } else {
             jButtonSwitch.setEnabled(true); 
