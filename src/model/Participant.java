@@ -4,6 +4,8 @@
  */
 package model;
 
+import switchutility.SUtils;
+
 /**
  *
  * @author sudiptasharif
@@ -32,4 +34,12 @@ public class Participant {
     public String getName() {
         return name;
     }
+
+    public static boolean isValidParticipantID(String participantID) {
+        return !((participantID == null) || (participantID.isBlank()) || (!SUtils.isInteger(participantID.trim())));
+    }
+
+    public static boolean isValidParticipantName(String participantName) {
+        return !((participantName == null) || (participantName.isBlank()) || (!SUtils.isValidName(participantName.trim())));
+    }    
 }

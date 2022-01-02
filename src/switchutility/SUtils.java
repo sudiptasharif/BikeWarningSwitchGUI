@@ -73,14 +73,6 @@ public class SUtils {
         return isValid;
     }
 
-    public static boolean isValidParticipantID(String participantID) {
-        return !((participantID == null) || (participantID.isBlank()) || (!isInteger(participantID.trim())));
-    }
-
-    public static boolean isValidParticipantName(String participantName) {
-        return !((participantName == null) || (participantName.isBlank()) || (!isValidName(participantName.trim())));
-    }
-
     public static boolean isInteger(String str) {
         try {
             Integer.parseInt(str);

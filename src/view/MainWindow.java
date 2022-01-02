@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Experiment;
 import model.ExperimentTableModel;
+import model.Participant;
 import model.Warning;
 import switchutility.SUtils;
 
@@ -305,7 +306,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jTextFieldParticipantIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldParticipantIDFocusLost
         String participantID = jTextFieldParticipantID.getText();
         participantID = participantID.trim();
-        if (!SUtils.isValidParticipantID(participantID)) {
+        if (!Participant.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantID.requestFocusInWindow();
@@ -319,7 +320,7 @@ public class MainWindow extends javax.swing.JFrame {
         String participantName = jTextFieldParticipantName.getText();
         participantName = participantName.trim();
         participantName = participantName.replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
-        if (!SUtils.isValidParticipantName(participantName)) {
+        if (!Participant.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             JOptionPane.showMessageDialog(this, SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT, "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldParticipantName.requestFocusInWindow();
@@ -381,13 +382,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void getParticipantInfo() {
         String participantID = JOptionPane.showInputDialog(SUtils.PARTICIPANT_ID_PROMPT);
         participantID = participantID.trim();
-        while (!SUtils.isValidParticipantID(participantID)) {
+        while (!Participant.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
 
         String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT).trim().replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
-        while (!SUtils.isValidParticipantName(participantName)) {
+        while (!Participant.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
         }
