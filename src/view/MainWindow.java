@@ -395,9 +395,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void setComboBoxWarningItems() {
-        String[] items = new String[SUtils.WARNINGS.length];
+        String[] items = SUtils.getAllWarnings();
         for(int i = 0; i < items.length; i++) {
-             items[i] = "(" + (i+1) + ") " + SUtils.WARNINGS[i];
+             items[i] = "(" + (i+1) + ") " + items[i];
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }

@@ -28,7 +28,7 @@ public class SUtils {
     public static final String INVALID_STRING_BLANK = "' '(blank)";
     public static final String INVALID_PARTICIPANT_ID = "Invalid ID";
     public static final String INVALID_PARTICIPANT_NAME = "Invalid Name";
-    public static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
+    private static final String[] WARNINGS = {"Stop + Tone", "Stop + Voice", "Yeild + Tone", "Yeild + Voice", "None"};
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
@@ -110,5 +110,17 @@ public class SUtils {
     
     public static boolean isOSWindows() {
         return System.getProperty("os.name").toLowerCase().startsWith("windows");
+    }
+    
+    public static String[] getAllWarnings() {
+        String[] warningList = new String[WARNINGS.length];
+        for(int i = 0; i < warningList.length; i++) {
+            warningList[i] = WARNINGS[i];
+        }
+        return warningList;
+    }
+    
+    public static String getWarningByCode(int warningCode) {
+        return isValidWarningCode(warningCode) ? WARNINGS[warningCode-1] : "";
     }
 }
