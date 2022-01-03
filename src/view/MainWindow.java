@@ -439,6 +439,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void setAppIcon() {
-        this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH).getImage());
+        if (SUtils.isOSWindows()) {
+            this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH).getImage());
+            // ImageIcon not supported in Mac OS           
+        }
     }
 }
