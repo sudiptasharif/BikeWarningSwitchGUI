@@ -4,11 +4,7 @@
  */
 package controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import javax.swing.JOptionPane;
 import model.TCP;
-import switchutility.SUtils;
 
 /**
  *
@@ -30,7 +26,7 @@ public class ConfigureTCPController {
         return uniqueTCPController;
     }
 
-    public String configureTCP() {
+    public String setupTCP() {
         return tcp.configureTCP();
     }
 }

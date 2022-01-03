@@ -52,7 +52,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemConfigTCP">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Configure TCP (Android)"/>
+                <Property name="text" type="java.lang.String" value="Setup TCP (Android)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemConfigTCPActionPerformed"/>
@@ -75,6 +75,9 @@
       <Dimension value="[740, 530]"/>
     </Property>
   </Properties>
+  <AccessibilityProperties>
+    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Research Warning Switch Application For Bicyclist  "/>
+  </AccessibilityProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBarSwitch"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -145,7 +148,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPaneDataTable" alignment="1" pref="305" max="32767" attributes="0"/>
+              <Component id="jScrollPaneDataTable" alignment="1" pref="308" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

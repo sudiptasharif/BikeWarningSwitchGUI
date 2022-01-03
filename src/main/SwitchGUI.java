@@ -4,10 +4,6 @@
  */
 package main;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import switchutility.SUtils;
 import view.MainWindow;
 
 /**
@@ -46,6 +42,6 @@ public class SwitchGUI {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new MainWindow().setVisible(true);
-        });        
+        });
     }
 }

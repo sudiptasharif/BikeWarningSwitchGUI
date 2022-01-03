@@ -32,17 +32,9 @@ public class TCP {
     private final String DEVICE = "device";
     private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "No android device detected. Make sure: \n\n(i) Phone is connected to computer.\n(ii) USB debugging is enabled.\n\nThen try again.";
 
-    private boolean tcpConfigured;
-
-    public TCP() {
-        tcpConfigured = false;
-    }
-
     public String configureTCP() {
         String result;
-        if (tcpConfigured) {
-            result = NETWORK_ACTIVE_MSG;
-        } else if (SUtils.isOSWindows()) {
+        if (SUtils.isOSWindows()) {
             result = configureTCPWindows();
         } else if (SUtils.isOSMac()) {
             result = configureTCPMacOS();
@@ -53,7 +45,24 @@ public class TCP {
     }
 
     public String configureTCPWindows() {
-        String result = "TODO";
+        String result = scanForAttachedDevices(false, "");
+        if (!result.equalsIgnoreCase(ERROR)) {
+            if (scannForAndroidDevice(result) == 1) {
+                result = forwardPort(false, "");
+                if (result.startsWith(PORT_FORWARD_FROM)) {
+                    result = NETWORK_SETUP_SUCCESS_MSG;
+                } else if (result.isBlank()) {
+                    result = NETWORK_ACTIVE_MSG;
+                } else {
+                    result = NETWORK_SETUP_FAIL_MSG;
+                }
+            } else {
+                result = NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG;
+            }
+        } else {
+            result = NETWORK_SETUP_FAIL_MSG;
+        }
+
         return result;
     }
 
@@ -67,10 +76,8 @@ public class TCP {
                     result = forwardPort(true, userName);
                     if (result.startsWith(PORT_FORWARD_FROM)) {
                         result = NETWORK_SETUP_SUCCESS_MSG;
-                        tcpConfigured = true;
                     } else if (result.isBlank()) {
                         result = NETWORK_ACTIVE_MSG;
-                        tcpConfigured = true;
                     } else {
                         result = NETWORK_SETUP_FAIL_MSG;
                     }

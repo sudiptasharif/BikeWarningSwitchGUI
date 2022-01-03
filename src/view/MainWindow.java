@@ -102,7 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanelDataTableLayout.setVerticalGroup(
             jPanelDataTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+            .addComponent(jScrollPaneDataTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
 
         jPanelSwitch.setBorder(javax.swing.BorderFactory.createTitledBorder("Switch"));
@@ -233,7 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuNetwork.setText("Network");
 
-        jMenuItemConfigTCP.setText("Configure TCP (Android)");
+        jMenuItemConfigTCP.setText("Setup TCP (Android)");
         jMenuItemConfigTCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemConfigTCPActionPerformed(evt);
@@ -270,6 +270,8 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jPanelSwitch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("Research Warning Switch Application For Bicyclist  ");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -351,7 +353,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItemConfigTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigTCPActionPerformed
         tcpController = ConfigureTCPController.getInstance();
-        JOptionPane.showMessageDialog(this, tcpController.configureTCP(), "Network", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, tcpController.setupTCP(), "Network", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItemConfigTCPActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
