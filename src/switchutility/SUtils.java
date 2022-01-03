@@ -7,6 +7,7 @@ package switchutility;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 /**
  *
  * @author sudiptasharif
@@ -32,7 +33,7 @@ public class SUtils {
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
     public static final String CSV_ROOT_FOLDER = "participant_data/";
-    
+
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
@@ -81,8 +82,16 @@ public class SUtils {
             return false;
         }
     }
-    
+
     public static boolean isOSWindows() {
         return System.getProperty("os.name").toLowerCase().startsWith("windows");
+    }
+
+    public static boolean isOSMac() {
+        return System.getProperty("os.name").toLowerCase().startsWith("mac");
+    }
+
+    public static String getSystemUserName() {
+        return System.getProperty("user.name");
     }
 }

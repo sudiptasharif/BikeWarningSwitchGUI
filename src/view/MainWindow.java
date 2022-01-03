@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ConfigureTCPController;
 import controller.MainWindowController;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -22,7 +23,9 @@ import switchutility.SUtils;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    private ConfigureTCPController tcpController;
     private MainWindowController mainWindowController;
+
     /**
      * Creates new form MainWindow
      */
@@ -56,11 +59,11 @@ public class MainWindow extends javax.swing.JFrame {
         jLabelParticipantName = new javax.swing.JLabel();
         jTextFieldParticipantName = new javax.swing.JTextField();
         jMenuBarSwitch = new javax.swing.JMenuBar();
-        jMenuNetwork = new javax.swing.JMenu();
-        jMenuItemConfigTCP = new javax.swing.JMenuItem();
         jMenuExperiment = new javax.swing.JMenu();
         jMenuItemStartExp = new javax.swing.JMenuItem();
         jMenuItemStopExp = new javax.swing.JMenuItem();
+        jMenuNetwork = new javax.swing.JMenu();
+        jMenuItemConfigTCP = new javax.swing.JMenuItem();
 
         jMenuItemDelete.setText("Delete");
         jMenuItemDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -206,13 +209,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenuNetwork.setText("Network");
-
-        jMenuItemConfigTCP.setText("Configure TCP");
-        jMenuNetwork.add(jMenuItemConfigTCP);
-
-        jMenuBarSwitch.add(jMenuNetwork);
-
         jMenuExperiment.setMnemonic('V');
         jMenuExperiment.setText("Experiment");
 
@@ -234,6 +230,18 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuExperiment.add(jMenuItemStopExp);
 
         jMenuBarSwitch.add(jMenuExperiment);
+
+        jMenuNetwork.setText("Network");
+
+        jMenuItemConfigTCP.setText("Configure TCP (Android)");
+        jMenuItemConfigTCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConfigTCPActionPerformed(evt);
+            }
+        });
+        jMenuNetwork.add(jMenuItemConfigTCP);
+
+        jMenuBarSwitch.add(jMenuNetwork);
 
         setJMenuBar(jMenuBarSwitch);
 
@@ -327,19 +335,24 @@ public class MainWindow extends javax.swing.JFrame {
         } else {
             jTextFieldParticipantName.setText(participantName);
             mainWindowController.updateParticipantName(participantName);
-        }    
+        }
     }//GEN-LAST:event_jTextFieldParticipantNameFocusLost
 
     private void jComboBoxWarningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWarningActionPerformed
-        JComboBox cb = (JComboBox)evt.getSource();
+        JComboBox cb = (JComboBox) evt.getSource();
         int warningIndex = cb.getSelectedIndex();
-        updateEnableButtonSwitch(warningIndex+1);
-        mainWindowController.updateSelectedWarningCode(warningIndex+1);
+        updateEnableButtonSwitch(warningIndex + 1);
+        mainWindowController.updateSelectedWarningCode(warningIndex + 1);
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
         mainWindowController.processAlertWarningRequests();
     }//GEN-LAST:event_jButtonSwitchActionPerformed
+
+    private void jMenuItemConfigTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigTCPActionPerformed
+        tcpController = ConfigureTCPController.getInstance();
+        JOptionPane.showMessageDialog(this, tcpController.configureTCP(), "Network", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItemConfigTCPActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
@@ -395,28 +408,28 @@ public class MainWindow extends javax.swing.JFrame {
         jTextFieldParticipantID.setText(participantID);
         jTextFieldParticipantName.setText(participantName);
     }
-    
+
     private void setComboBoxWarningItems() {
         String[] items = Warning.getAllWarnings();
-        for(int i = 0; i < items.length; i++) {
-             items[i] = "(" + (i+1) + ") " + items[i];
+        for (int i = 0; i < items.length; i++) {
+            items[i] = "(" + (i + 1) + ") " + items[i];
         }
         jComboBoxWarning.setModel(new DefaultComboBoxModel(items));
     }
-    
+
     private void updateEnableButtonSwitch(int warningCode) {
-        if(Warning.isWarningNone(warningCode)) {
+        if (Warning.isWarningNone(warningCode)) {
             jButtonSwitch.setEnabled(false);
         } else {
-            jButtonSwitch.setEnabled(true); 
+            jButtonSwitch.setEnabled(true);
         }
     }
-    
+
     private void setEmptyExperimentTableModel() {
         ExperimentTableModel tableModel = new ExperimentTableModel(0);
         jTableData.setModel(tableModel);
     }
-    
+
     private void showTableDataPopUpMenu(MouseEvent e) {
         jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
     }
