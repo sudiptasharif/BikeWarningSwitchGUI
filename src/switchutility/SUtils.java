@@ -33,6 +33,7 @@ public class SUtils {
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
     public static final String CSV_ROOT_FOLDER = "participant_data/";
+    public static final String APP_ICON_PATH = "res/img/bicycle_edited.png";
 
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";

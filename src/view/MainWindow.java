@@ -9,6 +9,7 @@ import controller.MainWindowController;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Experiment;
@@ -33,6 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         setComboBoxWarningItems();
         setEmptyExperimentTableModel();
+        setAppIcon();
     }
 
     /**
@@ -74,7 +76,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPopupMenuTableData.add(jMenuItemDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Bike Warning Switch");
+        setTitle("Warning Application for Bicyclist ");
         setName("jFrameMainWindow"); // NOI18N
         setPreferredSize(new java.awt.Dimension(740, 530));
         setResizable(false);
@@ -434,5 +436,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void showTableDataPopUpMenu(MouseEvent e) {
         jPopupMenuTableData.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private void setAppIcon() {
+        this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH).getImage());
     }
 }
