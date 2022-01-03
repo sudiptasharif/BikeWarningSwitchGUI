@@ -78,9 +78,9 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Warning Application for Bicyclist ");
         setName("jFrameMainWindow"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(740, 530));
+        setPreferredSize(new java.awt.Dimension(740, 540));
         setResizable(false);
-        setSize(new java.awt.Dimension(740, 530));
+        setSize(new java.awt.Dimension(740, 540));
 
         jPanelDataTable.setBorder(javax.swing.BorderFactory.createTitledBorder("Data"));
         jPanelDataTable.setPreferredSize(new java.awt.Dimension(485, 300));
