@@ -288,12 +288,11 @@ public class MainWindow extends javax.swing.JFrame {
             if (returnMsg.getMessageSuccess()) {
                 startExperiment(switchSocket);
             } else {
-                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Android App Connection", returnMsg.getMessageType());
+                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Connection Error", returnMsg.getMessageType());
             }
         } else {
             startExperiment(switchSocket);
         }
-
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed

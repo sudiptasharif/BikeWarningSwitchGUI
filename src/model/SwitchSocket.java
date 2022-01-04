@@ -76,19 +76,19 @@ public class SwitchSocket implements Runnable {
         return warningResponse;
     }
 
-    public boolean checkServerOnState(String state) {
+    public boolean isAndroidAppListening(String state) {
         return state != null && state.equalsIgnoreCase(Integer.toString(APP_LISTENING));
     }
 
     public Message connectToAndroidApp() {
         Message returnMsg;
-        boolean serverOn;
+        boolean appListening;
         try {
             socket = new Socket(hostName, portNumber);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            serverOn = checkServerOnState(in.readLine());
-            if (serverOn) {
+            appListening = isAndroidAppListening(in.readLine());
+            if (appListening) {
                 returnMsg = new Message(true, CONNECTION_SUCCESS, JOptionPane.INFORMATION_MESSAGE);
                 connectedToApp = true;
             } else {
