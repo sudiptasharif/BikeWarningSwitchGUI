@@ -40,8 +40,8 @@ public class SwitchSocket implements Runnable {
     private BufferedReader in;
     private final String hostName;
     private final int portNumber;
-    private boolean connectedToApp;
-    private int warningCodeToSend;
+    private volatile boolean connectedToApp;
+    private volatile int warningCodeToSend;
     private volatile int warningState;
     private volatile Message warningResponse;
 

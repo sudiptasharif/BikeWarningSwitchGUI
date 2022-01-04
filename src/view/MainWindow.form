@@ -106,7 +106,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelSwitch" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanelDataTable" pref="728" max="32767" attributes="0"/>
+                  <Component id="jPanelDataTable" pref="720" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -148,7 +148,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPaneDataTable" alignment="1" pref="305" max="32767" attributes="0"/>
+              <Component id="jScrollPaneDataTable" alignment="1" pref="308" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

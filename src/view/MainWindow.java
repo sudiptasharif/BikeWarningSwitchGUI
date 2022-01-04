@@ -16,6 +16,8 @@ import model.Experiment;
 import model.ExperimentTableModel;
 import model.Message;
 import model.Participant;
+import model.SwitchSocket;
+import model.TCP;
 import model.Warning;
 import switchutility.SUtils;
 
@@ -280,11 +282,18 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemStartExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartExpActionPerformed
-        jMenuItemStartExp.setEnabled(false);
-        jMenuItemStopExp.setEnabled(true);
-        getParticipantInfo();
-        setEnabledGUIComponents(true);
-        mainWindowController = new MainWindowController(new Experiment(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText()), jTableData);
+        SwitchSocket switchSocket = SwitchSocket.getInstance(TCP.HOSTNAME, Integer.parseInt(TCP.PORT_FORWARD_FROM));
+        if (!switchSocket.isConnectedToAndroidApp()) {
+            Message returnMsg = switchSocket.connectToAndroidApp();
+            if (returnMsg.getMessageSuccess()) {
+                startExperiment(switchSocket);
+            } else {
+                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Android App Connection", returnMsg.getMessageType());
+            }
+        } else {
+            startExperiment(switchSocket);
+        }
+
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed
@@ -294,7 +303,7 @@ public class MainWindow extends javax.swing.JFrame {
         resetGUIComponents();
         mainWindowController.stopExperiment();
         Message msg = mainWindowController.saveExperiment();
-        JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType()); 
+        JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType());
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     private void jButtonSwitchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseEntered
@@ -445,5 +454,13 @@ public class MainWindow extends javax.swing.JFrame {
             this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH).getImage());
             // ImageIcon not supported in Mac OS           
         }
+    }
+
+    private void startExperiment(SwitchSocket switchSocket) {
+        jMenuItemStartExp.setEnabled(false);
+        jMenuItemStopExp.setEnabled(true);
+        getParticipantInfo();
+        setEnabledGUIComponents(true);
+        mainWindowController = new MainWindowController(switchSocket, new Experiment(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText()), jTableData);
     }
 }

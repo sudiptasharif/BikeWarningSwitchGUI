@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import model.Message;
+import model.SwitchSocket;
 
 /**
  *
@@ -26,8 +27,10 @@ public class MainWindowController {
     private JTable viewDataTable;
     private Experiment modelExperiment;
     private int selectedWarningCode;
+    private SwitchSocket switchSocket;
 
-    public MainWindowController(Experiment experiment, JTable dataTable) {
+    public MainWindowController(SwitchSocket switchSocket, Experiment experiment, JTable dataTable) {
+        this.switchSocket = switchSocket;
         modelExperiment = experiment;
         viewDataTable = dataTable;
         selectedWarningCode = SUtils.DEFAULT_WARNING_CODE;
