@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -17,16 +17,13 @@ import switchutility.SUtils;
  *
  * @author sudiptasharif
  */
-public class SwitchSocket implements Runnable {
+public class SwitchSocket {
 
-    public static final int WARNING_IDLE = 0;
-    public static final int WARNING_START = 1;
-    public static final int WARNING_STOP = 2;
     public static final int APP_LISTENING = 1;
     public static final int INVALID_WARNING_CODE = -1;
 
     private final String CONNECTION_SUCCESS = "Android app connection SUCCESSFUL.\n";
-    private final String CONNECTION_FAILURE = "Android app connection FAILED. Make sure:\n\n(i) Android app is started.\n(ii) In app press button: START LISTENING";
+    private final String CONNECTION_FAILURE = "Android app connection FAILED. Make sure:\n\n(i) Android app is running.\n(ii) Network is setup.\n(iii) In app press button: START LISTENING";
     private final String UNKNOWN_HOST_EXCEPTION = "Unknown host (port): %s\nException msg: %s";
     private final String IO_EXCEPTION = "I/O connection exception to: %s\nException msg: %s";
     private final String INVALID_WARNING = "Warning FAILED.\nInvalid warning code: %s";
@@ -41,16 +38,11 @@ public class SwitchSocket implements Runnable {
     private final String hostName;
     private final int portNumber;
     private volatile boolean connectedToApp;
-    private volatile int warningCodeToSend;
-    private volatile int warningState;
-    private volatile Message warningResponse;
 
     private SwitchSocket(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
         connectedToApp = false;
-        warningState = WARNING_IDLE;
-        warningResponse = null;
     }
 
     public static SwitchSocket getInstance(String hostName, int portNumber) {
@@ -62,18 +54,6 @@ public class SwitchSocket implements Runnable {
 
     public boolean isConnectedToAndroidApp() {
         return connectedToApp;
-    }
-
-    public void setWarningToSend(int warningCode) {
-        warningCodeToSend = warningCode;
-    }
-
-    public int getWarningState() {
-        return warningState;
-    }
-
-    public Message getWarningResponse() {
-        return warningResponse;
     }
 
     public boolean isAndroidAppListening(String state) {
@@ -105,8 +85,8 @@ public class SwitchSocket implements Runnable {
         return returnMsg;
     }
 
-    public void sendWarningSignal() {
-        warningState = WARNING_START;
+    public Message sendWarningSignal(int warningCodeToSend) {
+        Message warningResponse;
         try {
             out.println(warningCodeToSend);
             String t3 = in.readLine();
@@ -118,7 +98,7 @@ public class SwitchSocket implements Runnable {
         } catch (IOException e) {
             warningResponse = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
         }
-        warningState = WARNING_STOP;
+        return warningResponse;
     }
 
     public Message closeSocket() {
@@ -138,10 +118,5 @@ public class SwitchSocket implements Runnable {
             returnMsg = new Message(false, String.format(SOCKET_CLOSE_FAIL, e.getMessage()), JOptionPane.ERROR_MESSAGE);
         }
         return returnMsg;
-    }
-
-    @Override
-    public void run() {
-        sendWarningSignal();
     }
 }

@@ -288,7 +288,7 @@ public class MainWindow extends javax.swing.JFrame {
             if (returnMsg.isMessageSuccess()) {
                 startExperiment(switchSocket);
             } else {
-                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "App Connection Error", returnMsg.getMessageType());
+                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Connection Error", returnMsg.getMessageType());
             }
         } else {
             startExperiment(switchSocket);
@@ -360,9 +360,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        jButtonSwitch.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         Message returnMsg = mainWindowController.processAlertWarningRequests();
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        jButtonSwitch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         if(!returnMsg.isMessageSuccess()) {
             JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
         }

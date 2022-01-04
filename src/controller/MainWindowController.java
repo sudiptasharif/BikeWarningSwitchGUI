@@ -11,11 +11,9 @@ import model.ExperimentTableModel;
 import model.Warning;
 import switchutility.SUtils;
 import com.opencsv.CSVWriter;
-import java.awt.Cursor;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Message;
 import model.SwitchSocket;
@@ -56,25 +54,19 @@ public class MainWindowController {
     }
 
     public Message processAlertWarningRequests() {
-        Message returnMsg;
+        Message response;
         try {
-            switchSocket.setWarningToSend(selectedWarningCode);
-            Thread thread = new Thread(switchSocket);
             Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
-            thread.start();
-            while(switchSocket.getWarningState() != SwitchSocket.WARNING_STOP) {
-                // DO NOTHING WAIT FOR WARNING TO END
-            }
-            returnMsg = switchSocket.getWarningResponse();
-            if (returnMsg.isMessageSuccess()) {
-                warning.setT3(returnMsg.getMessage());
+            response = switchSocket.sendWarningSignal(selectedWarningCode);
+            if (response.isMessageSuccess()) {
+                warning.setT3(response.getMessage());
                 modelExperiment.addWarning(warning);
                 updateTableData();
             }
         } catch (Exception e) {
-            returnMsg = new Message(false, String.format("Warning FAILED.\nException message: %s", e.getMessage()), JOptionPane.ERROR_MESSAGE);
+            response = new Message(false, String.format("Warning FAILED.\nException message: %s", e.getMessage()), JOptionPane.ERROR_MESSAGE);
         }
-        return returnMsg;
+        return response;
     }
 
     private void updateTableData() {
