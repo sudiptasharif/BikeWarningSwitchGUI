@@ -363,7 +363,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonSwitch.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         Message returnMsg = mainWindowController.processAlertWarningRequests();
         jButtonSwitch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        if(!returnMsg.isMessageSuccess()) {
+        if (!returnMsg.isMessageSuccess()) {
             JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
         }
     }//GEN-LAST:event_jButtonSwitchActionPerformed

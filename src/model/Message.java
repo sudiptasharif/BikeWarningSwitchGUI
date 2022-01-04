@@ -45,11 +45,11 @@ public class Message {
     public boolean isMessageSuccess() {
         return msgSuccess;
     }
-    
+
     public void setMessageType(int msgType) {
         this.msgType = msgType;
     }
-    
+
     public void setMessageSuccess(boolean msgSuccess) {
         this.msgSuccess = msgSuccess;
     }

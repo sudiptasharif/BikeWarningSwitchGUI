@@ -5,13 +5,13 @@
 package model;
 
 import javax.swing.table.AbstractTableModel;
-import switchutility.SUtils;
 
 /**
  *
  * @author sudiptasharif
  */
 public class ExperimentTableModel extends AbstractTableModel {
+
     private static final String[] TABLE_DATA_HEADERS = {"Sequence #", "Warning", "T2", "T3"};
     private Object[][] data;
 

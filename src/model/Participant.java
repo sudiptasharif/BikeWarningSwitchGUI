@@ -11,6 +11,7 @@ import switchutility.SUtils;
  * @author sudiptasharif
  */
 public class Participant {
+
     private int id;
     private String name;
 
@@ -41,5 +42,5 @@ public class Participant {
 
     public static boolean isValidParticipantName(String participantName) {
         return !((participantName == null) || (participantName.isBlank()) || (!SUtils.isValidName(participantName.trim())));
-    }    
+    }
 }
