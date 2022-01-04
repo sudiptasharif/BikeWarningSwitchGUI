@@ -360,7 +360,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
-        mainWindowController.processAlertWarningRequests(jButtonSwitch);
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        Message returnMsg = mainWindowController.processAlertWarningRequests();
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        if(returnMsg.getMessageSuccess() == false) {
+            JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
+        }
     }//GEN-LAST:event_jButtonSwitchActionPerformed
 
     private void jMenuItemConfigTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigTCPActionPerformed

@@ -28,7 +28,7 @@ public class MainWindowController {
 
     private JTable viewDataTable;
     private Experiment modelExperiment;
-    private int selectedWarningCode;
+    private volatile int selectedWarningCode;
     private SwitchSocket switchSocket;
 
     public MainWindowController(SwitchSocket switchSocket, Experiment experiment, JTable dataTable) {
@@ -55,12 +55,26 @@ public class MainWindowController {
         }
     }
 
-    public void processAlertWarningRequests(JButton button) {
-        button.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
-        // TODO: send warning signal and get t3
-        modelExperiment.addWarning(warning);
-        updateTableData();
+    public Message processAlertWarningRequests() {
+        Message returnMsg;
+        try {
+            switchSocket.setWarningToSend(selectedWarningCode);
+            Thread thread = new Thread(switchSocket);
+            Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
+            thread.start();
+            while(switchSocket.getWarningState() != SwitchSocket.WARNING_STOP) {
+                // DO NOTHING WAIT FOR WARNING TO END
+            }
+            returnMsg = switchSocket.getWarningResponse();
+            if (returnMsg.getMessageSuccess()) {
+                warning.setT3(returnMsg.getMessage());
+                modelExperiment.addWarning(warning);
+                updateTableData();
+            }
+        } catch (Exception e) {
+            returnMsg = new Message(false, String.format("Warning FAILED.\nException message: %s", e.getMessage()), JOptionPane.ERROR_MESSAGE);
+        }
+        return returnMsg;
     }
 
     private void updateTableData() {
@@ -89,8 +103,8 @@ public class MainWindowController {
         List<String[]> dataList = convertExperimentDataToArrayList();
         try (CSVWriter writer = new CSVWriter(new FileWriter(SUtils.CSV_ROOT_FOLDER + csvFileName))) {
             writer.writeAll(dataList);
-            msg = new Message("Successfully saved experiment.\nSaved file name: " + csvFileName , JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e){
+            msg = new Message("Successfully saved experiment.\nSaved file name: " + csvFileName, JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
             msg = new Message("Failed to save experiment.\nError: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         return msg;
@@ -109,24 +123,24 @@ public class MainWindowController {
             columnValues = new String[tableHeaders.length];
             //Sequence #
             columnValues[0] = (row + 1) + "";
-            
+
             //Warning
             columnValues[1] = warning.geWarningStrForTable();
-            
+
             //T2
             t = warning.getT2();
-            if(!t.equals("--")) {
+            if (!t.equals("--")) {
                 t = "'" + t;
             }
             columnValues[2] = t;
-            
+
             //T3
             t = warning.getT3();
-            if(!t.equals("--")) {
+            if (!t.equals("--")) {
                 t = "'" + t;
-            }           
+            }
             columnValues[3] = t;
-            
+
             dataList.add(columnValues);
         }
         return dataList;

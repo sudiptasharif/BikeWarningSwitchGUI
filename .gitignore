@@ -6,5 +6,4 @@ test/*
 /dist/
 .DS_Store                                                                                                                               
 src/.DS_Store
-participant_data/*.csv
-participant_data/*.txt
+participant_data/*
