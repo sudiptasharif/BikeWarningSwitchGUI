@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Experiment;
 import model.ExperimentTableModel;
+import model.Message;
 import model.Participant;
 import model.Warning;
 import switchutility.SUtils;
@@ -292,7 +293,8 @@ public class MainWindow extends javax.swing.JFrame {
         setEnabledGUIComponents(false);
         resetGUIComponents();
         mainWindowController.stopExperiment();
-        mainWindowController.saveExperiment();
+        Message msg = mainWindowController.saveExperiment();
+        JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType()); 
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     private void jButtonSwitchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseEntered

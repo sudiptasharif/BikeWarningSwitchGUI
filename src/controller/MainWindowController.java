@@ -15,6 +15,7 @@ import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import model.Message;
 
 /**
  *
@@ -76,15 +77,17 @@ public class MainWindowController {
         modelExperiment.stopExperiment();
     }
 
-    public void saveExperiment() {
+    public Message saveExperiment() {
+        Message msg;
         String csvFileName = modelExperiment.getExperimentName() + ".csv";
         List<String[]> dataList = convertExperimentDataToArrayList();
         try (CSVWriter writer = new CSVWriter(new FileWriter(SUtils.CSV_ROOT_FOLDER + csvFileName))) {
             writer.writeAll(dataList);
-            JOptionPane.showMessageDialog(viewDataTable, "File Name: " + csvFileName, "Experiment Saved", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(viewDataTable, "Unable to write to file: " + csvFileName + "\n" + e.getMessage(), "Experiment Not Saved", JOptionPane.ERROR_MESSAGE);
+            msg = new Message("Successfully saved experiment.\nSaved file name: " + csvFileName , JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e){
+            msg = new Message("Failed to save experiment.\nError: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
+        return msg;
     }
 
     private List<String[]> convertExperimentDataToArrayList() {
