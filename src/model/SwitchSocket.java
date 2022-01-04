@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -43,14 +43,14 @@ public class SwitchSocket implements Runnable {
     private boolean connectedToApp;
     private int warningCodeToSend;
     private volatile int warningState;
-    private volatile Message warningResponseMsg;
+    private volatile Message warningResponse;
 
     private SwitchSocket(String hostName, int portNumber) {
         this.hostName = hostName;
         this.portNumber = portNumber;
         connectedToApp = false;
         warningState = WARNING_IDLE;
-        warningResponseMsg = null;
+        warningResponse = null;
     }
 
     public static SwitchSocket getInstance(String hostName, int portNumber) {
@@ -73,7 +73,7 @@ public class SwitchSocket implements Runnable {
     }
 
     public Message getWarningResponse() {
-        return warningResponseMsg;
+        return warningResponse;
     }
 
     public boolean checkServerOnState(String state) {
@@ -111,12 +111,12 @@ public class SwitchSocket implements Runnable {
             out.println(warningCodeToSend);
             String t3 = in.readLine();
             if (t3 != null && !t3.equals(Integer.toString(INVALID_WARNING_CODE))) {
-                warningResponseMsg = new Message(true, SUtils.formatDate(Long.parseLong(t3), SUtils.DATE_FORMAT_HH_MM_SS_MSSS), JOptionPane.INFORMATION_MESSAGE);
+                warningResponse = new Message(true, SUtils.formatDate(Long.parseLong(t3), SUtils.DATE_FORMAT_HH_MM_SS_MSSS), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                warningResponseMsg = new Message(false, String.format(INVALID_WARNING, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
+                warningResponse = new Message(false, String.format(INVALID_WARNING, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException e) {
-            warningResponseMsg = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
+            warningResponse = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
         }
         warningState = WARNING_STOP;
     }
