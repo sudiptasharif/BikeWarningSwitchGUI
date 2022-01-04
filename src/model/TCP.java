@@ -17,6 +17,7 @@ public class TCP {
 
     public static final String PORT_FORWARD_FROM = "5000";
     public static final String PORT_FORWARD_TO = "6000";
+    public static final String HOSTNAME = "localhost";
 
     private final String COMMAND_MAC_OS = "%s";
     private final String COMMAND_WINDOWS_OS = "cmd.exe /c %s";
