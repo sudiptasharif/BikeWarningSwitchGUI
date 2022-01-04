@@ -11,9 +11,11 @@ import model.ExperimentTableModel;
 import model.Warning;
 import switchutility.SUtils;
 import com.opencsv.CSVWriter;
+import java.awt.Cursor;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import model.Message;
 import model.SwitchSocket;
@@ -53,7 +55,8 @@ public class MainWindowController {
         }
     }
 
-    public void processAlertWarningRequests() {
+    public void processAlertWarningRequests(JButton button) {
+        button.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
         // TODO: send warning signal and get t3
         modelExperiment.addWarning(warning);
