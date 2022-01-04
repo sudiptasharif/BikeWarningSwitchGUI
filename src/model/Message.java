@@ -42,7 +42,7 @@ public class Message {
         return msgType;
     }
 
-    public boolean getMessageSuccess() {
+    public boolean isMessageSuccess() {
         return msgSuccess;
     }
     

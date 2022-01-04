@@ -285,10 +285,10 @@ public class MainWindow extends javax.swing.JFrame {
         SwitchSocket switchSocket = SwitchSocket.getInstance(TCP.HOSTNAME, Integer.parseInt(TCP.PORT_FORWARD_FROM));
         if (!switchSocket.isConnectedToAndroidApp()) {
             Message returnMsg = switchSocket.connectToAndroidApp();
-            if (returnMsg.getMessageSuccess()) {
+            if (returnMsg.isMessageSuccess()) {
                 startExperiment(switchSocket);
             } else {
-                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Connection Error", returnMsg.getMessageType());
+                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "App Connection Error", returnMsg.getMessageType());
             }
         } else {
             startExperiment(switchSocket);
@@ -363,7 +363,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         Message returnMsg = mainWindowController.processAlertWarningRequests();
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        if(returnMsg.getMessageSuccess() == false) {
+        if(!returnMsg.isMessageSuccess()) {
             JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
         }
     }//GEN-LAST:event_jButtonSwitchActionPerformed

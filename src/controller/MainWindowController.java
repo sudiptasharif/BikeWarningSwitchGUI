@@ -66,7 +66,7 @@ public class MainWindowController {
                 // DO NOTHING WAIT FOR WARNING TO END
             }
             returnMsg = switchSocket.getWarningResponse();
-            if (returnMsg.getMessageSuccess()) {
+            if (returnMsg.isMessageSuccess()) {
                 warning.setT3(returnMsg.getMessage());
                 modelExperiment.addWarning(warning);
                 updateTableData();
