@@ -23,14 +23,16 @@ public class SwitchSocket implements Runnable {
     public static final int WARNING_START = 1;
     public static final int WARNING_STOP = 2;
     public static final int APP_LISTENING = 1;
-    public static final int INVALID_SIGNAL_CODE = -1;
+    public static final int INVALID_WARNING_CODE = -1;
 
     private final String CONNECTION_SUCCESS = "Android app connection SUCCESSFUL.\n";
     private final String CONNECTION_FAILURE = "Android app connection FAILED.\n\nIn app press button: START LISTENING";
     private final String UNKNOWN_HOST_EXCEPTION = "Unknown host (port): %s\nException msg: %s";
     private final String IO_EXCEPTION = "I/O connection exception to: %s\nException msg: %s";
-    private final String INVALID_WARNING_CODE = "Warning FAILED.\nInvalid warning code: %s";
+    private final String INVALID_WARNING = "Warning FAILED.\nInvalid warning code: %s";
     private final String WARNING_EXCEPTION = "Warning FAILED.\nException message: %s";
+    private final String SOCKET_CLOSE_SUCCESS = "Socket close SUCCESSFUL.";
+    private final String SOCKET_CLOSE_FAIL = "Socket close FAILED.\nException message: %s";
 
     private static SwitchSocket uniqueSwitchSocket;
     private Socket socket;
@@ -108,10 +110,10 @@ public class SwitchSocket implements Runnable {
         try {
             out.println(warningCodeToSend);
             String t3 = in.readLine();
-            if (t3 != null && !t3.equals(Integer.toString(INVALID_SIGNAL_CODE))) {
+            if (t3 != null && !t3.equals(Integer.toString(INVALID_WARNING_CODE))) {
                 warningResponseMsg = new Message(true, SUtils.formatDate(Long.parseLong(t3), SUtils.DATE_FORMAT_HH_MM_SS_MSSS), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                warningResponseMsg = new Message(false, String.format(INVALID_WARNING_CODE, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
+                warningResponseMsg = new Message(false, String.format(INVALID_WARNING, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException e) {
             warningResponseMsg = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
@@ -131,9 +133,9 @@ public class SwitchSocket implements Runnable {
             if (socket != null) {
                 socket.close();
             }
-            returnMsg = new Message(true, "Successfully closed socket.", JOptionPane.INFORMATION_MESSAGE);
+            returnMsg = new Message(true, SOCKET_CLOSE_SUCCESS, JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            returnMsg = new Message(false, "Failed to close socket.\nException message: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            returnMsg = new Message(false, String.format(SOCKET_CLOSE_FAIL, e.getMessage()), JOptionPane.ERROR_MESSAGE);
         }
         return returnMsg;
     }
