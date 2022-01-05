@@ -437,19 +437,18 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void getParticipantInfo() {
         String participantID = JOptionPane.showInputDialog(SUtils.PARTICIPANT_ID_PROMPT);
-        participantID = participantID.trim();
         while (!Participant.isValidParticipantID(participantID)) {
             participantID = (participantID == null) || (participantID.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantID;
             participantID = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_ID + ": " + participantID + "\n" + SUtils.PARTICIPANT_ID_PROMPT_WITH_HINT);
         }
 
-        String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT).trim().replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " ");
+        String participantName = JOptionPane.showInputDialog(SUtils.PARTICIPANT_NAME_PROMPT);
         while (!Participant.isValidParticipantName(participantName)) {
             participantName = (participantName == null) || (participantName.isBlank()) ? SUtils.INVALID_STRING_BLANK : participantName;
             participantName = JOptionPane.showInputDialog(SUtils.INVALID_PARTICIPANT_NAME + ": " + participantName + "\n" + SUtils.PARTICIPANT_NAME_PROMPT_WITH_HINT);
         }
-        jTextFieldParticipantID.setText(participantID);
-        jTextFieldParticipantName.setText(participantName);
+        jTextFieldParticipantID.setText(participantID.trim());
+        jTextFieldParticipantName.setText(participantName.trim().replaceAll(SUtils.REGEX_EXTRA_WHITE_SPACE, " "));
     }
 
     private void setComboBoxWarningItems() {
