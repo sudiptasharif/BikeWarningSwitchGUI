@@ -11,6 +11,7 @@ import model.ExperimentTableModel;
 import model.Warning;
 import switchutility.SUtils;
 import com.opencsv.CSVWriter;
+import java.io.File;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -91,13 +92,13 @@ public class MainWindowController {
 
     public Message saveExperiment() {
         Message msg;
-        String csvFileName = modelExperiment.getExperimentName() + ".csv";
         List<String[]> dataList = convertExperimentDataToArrayList();
-        try (CSVWriter writer = new CSVWriter(new FileWriter(SUtils.CSV_ROOT_FOLDER + csvFileName))) {
+        File csvFile = SUtils.getUniqueFile(SUtils.CSV_ROOT_FOLDER, modelExperiment.getExperimentName(), ".csv");
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile))) {
             writer.writeAll(dataList);
-            msg = new Message("Successfully saved experiment.\nSaved file name: " + csvFileName, JOptionPane.INFORMATION_MESSAGE);
+            msg = new Message("Experiment saved SUCCESSFULLY. File Location:\n" + csvFile.getAbsolutePath(), JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            msg = new Message("Failed to save experiment.\nError: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            msg = new Message("Experiment saved FAILED.\nError: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         return msg;
     }

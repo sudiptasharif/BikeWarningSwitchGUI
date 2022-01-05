@@ -4,6 +4,8 @@
  */
 package main;
 
+import model.Experiment;
+import switchutility.SUtils;
 import view.MainWindow;
 
 /**

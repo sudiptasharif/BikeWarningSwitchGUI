@@ -4,6 +4,7 @@
  */
 package switchutility;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class SUtils {
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
-    public static final String CSV_ROOT_FOLDER = "participant_data/";
+    public static final String CSV_ROOT_FOLDER = "participant_data";
     public static final String APP_ICON_PATH = "res/img/bicycle_edited.png";
 
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
@@ -94,5 +95,19 @@ public class SUtils {
 
     public static String getSystemUserName() {
         return System.getProperty("user.name");
+    }
+    
+    public static File getUniqueFile(String rootFolderName, String fileName, String fileExtension) {
+        String fullFileName = rootFolderName + "/" + fileName + fileExtension;
+        String fileNameWithIndex = "";
+        File file = new File(fullFileName); 
+        int index = 2;
+        while(file.exists() && !file.isDirectory()) {
+            fileNameWithIndex = fileName + " (" + index + ")";
+            fullFileName = rootFolderName + "/" + fileNameWithIndex + fileExtension;
+            file = new File(fullFileName);
+            index++;
+        }
+        return file;
     }
 }
