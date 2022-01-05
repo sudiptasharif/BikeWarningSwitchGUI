@@ -24,7 +24,7 @@ public class TCP {
     private final String ADB_COMMAND_LIST_DEVICES = "adb devices";
     private final String ADB_COMMAND_FORWARD_TCP_FORMAT_STR = "adb -d forward tcp:%s tcp:%s";
     private final String ADB_PATH_MAC_FORMAT_STR = "/Users/%s/Library/Android/sdk/platform-tools/";
-    private final String NETWORK_ACTIVE_MSG = "Network is setup.\nNo action needed.\nReady to start experiment.";
+    private final String NETWORK_ACTIVE_MSG = "Network is setup.\nNo action needed.";
     private final String NETWORK_SETUP_SUCCESS_MSG = "Network setup successful.\nReady to start experiment.";
     private final String NETWORK_SETUP_FAIL_MSG = "Network setup failed.\nTry to configure network manually in terminal.\n\nUse following command:\nadb -d forward tcp:5000 tcp:6000\n\nMake sure: \n(i) Port Number 5000 is available.\n";
     private final String OS_ERROR_MSG = "Network setup failed.\nOperating System (OS) not supported.\nConfigure TCP manually for this OS.\nHowever, app might not work as expected.";
