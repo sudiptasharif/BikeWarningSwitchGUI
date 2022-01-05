@@ -4,6 +4,7 @@
  */
 package controller;
 
+import model.Message;
 import model.TCP;
 
 /**
@@ -26,7 +27,7 @@ public class ConfigureTCPController {
         return uniqueTCPController;
     }
 
-    public String setupTCP() {
+    public Message setupTCP() {
         return tcp.configureTCP();
     }
 }

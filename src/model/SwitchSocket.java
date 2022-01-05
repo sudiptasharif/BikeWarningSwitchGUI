@@ -23,11 +23,11 @@ public class SwitchSocket {
     public static final int INVALID_WARNING_CODE = -1;
 
     private final String CONNECTION_SUCCESS = "Android app connection SUCCESSFUL.\n";
-    private final String CONNECTION_FAILURE = "Android app connection FAILED.\n\nMake sure:\n(i) Network is setup.\n(ii) Android app is running.\n(iii) In app press button: START LISTENING.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
+    private final String CONNECTION_FAILURE = "Android app connection FAILED.\n\nMake sure:\n(i) Android app is running.\n(ii) In app press button: START LISTENING.\n\nThen try again.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String UNKNOWN_HOST_EXCEPTION = "Unknown host (port): %s\nException msg: %s\n\nMake sure:\n(i) Network is setup.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String IO_EXCEPTION = "I/O connection exception to: %s\nException msg: %s\n\nMake sure:\n(i) Network is setup.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String INVALID_WARNING = "Warning FAILED.\nInvalid warning code: %s";
-    private final String WARNING_EXCEPTION = "Warning FAILED.\nException message: %s\n\nMake sure:\n(i) Android Device is connected to computer.\n(ii) Network is setup.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
+    private final String WARNING_EXCEPTION = "Warning FAILED.\nException message: %s\n\nMake sure:\n(i) Android Device is connected to computer.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String SOCKET_CLOSE_SUCCESS = "Socket close SUCCESSFUL.";
     private final String SOCKET_CLOSE_FAIL = "Socket close FAILED.\nException message: %s\n\nd" + SUtils.CONTACT_SOFTWARE_ENGINEER;
 

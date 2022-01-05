@@ -7,6 +7,7 @@ package model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
 import switchutility.SUtils;
 
 /**
@@ -25,7 +26,7 @@ public class TCP {
     private final String ADB_COMMAND_FORWARD_TCP_FORMAT_STR = "adb -d forward tcp:%s tcp:%s";
     private final String ADB_PATH_MAC_FORMAT_STR = "/Users/%s/Library/Android/sdk/platform-tools/";
     private final String NETWORK_ACTIVE_MSG = "Network is setup.\nNo action needed.";
-    private final String NETWORK_SETUP_SUCCESS_MSG = "Network setup successful.\nReady to start experiment.";
+    private final String NETWORK_SETUP_SUCCESS_MSG = "Network setup successful.";
     private final String NETWORK_SETUP_FAIL_MSG = "Network setup failed.\nTry to configure network manually in terminal.\n\nUse following command:\nadb -d forward tcp:5000 tcp:6000\n\nMake sure: \n(i) Port Number 5000 is available.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String OS_ERROR_MSG = "Network setup failed.\nOperating System (OS) not supported.\nConfigure TCP manually for this OS.\nHowever, app might not work as expected.";
     private final String ERROR = "error";
@@ -33,41 +34,47 @@ public class TCP {
     private final String DEVICE = "device";
     private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "Network setup failed.\nUnable to communicate with Android Device.\n\nMake sure: \n(i) Device is connected to computer.\n(ii) Device is not sleeping, and screen is unlocked.\n(iii) USB debugging is enabled.\n\nThen try again.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
 
-    public String configureTCP() {
-        String result;
+    public Message configureTCP() {
+        Message result;
         if (SUtils.isOSWindows()) {
             result = configureTCPWindows();
         } else if (SUtils.isOSMac()) {
             result = configureTCPMacOS();
         } else {
-            result = OS_ERROR_MSG;
+            result = new Message(false, OS_ERROR_MSG, JOptionPane.INFORMATION_MESSAGE);
         }
         return result;
     }
 
-    public String configureTCPWindows() {
+    public Message configureTCPWindows() {
+        Message returnMsg;
         String result = scanForAttachedDevices(false, "");
         if (!result.equalsIgnoreCase(ERROR)) {
             if (scannForAndroidDevice(result) == 1) {
                 result = forwardPort(false, "");
                 if (result.startsWith(PORT_FORWARD_FROM)) {
                     result = NETWORK_SETUP_SUCCESS_MSG;
+                    returnMsg = new Message(true, result, JOptionPane.INFORMATION_MESSAGE);
                 } else if (result.isBlank()) {
                     result = NETWORK_ACTIVE_MSG;
+                    returnMsg = new Message(true, result, JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     result = NETWORK_SETUP_FAIL_MSG;
+                    returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 result = NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG;
+                returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
             }
         } else {
             result = NETWORK_SETUP_FAIL_MSG;
+            returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
         }
-
-        return result;
+        return returnMsg;
     }
 
-    public String configureTCPMacOS() {
+    public Message configureTCPMacOS() {
+        Message returnMsg;
         String result;
         String userName = SUtils.getSystemUserName();
         if (!userName.isBlank()) {
@@ -77,21 +84,27 @@ public class TCP {
                     result = forwardPort(true, userName);
                     if (result.startsWith(PORT_FORWARD_FROM)) {
                         result = NETWORK_SETUP_SUCCESS_MSG;
+                        returnMsg = new Message(true, result, JOptionPane.INFORMATION_MESSAGE);
                     } else if (result.isBlank()) {
                         result = NETWORK_ACTIVE_MSG;
+                        returnMsg = new Message(true, result, JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         result = NETWORK_SETUP_FAIL_MSG;
+                        returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     result = NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG;
+                    returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 result = NETWORK_SETUP_FAIL_MSG;
+                returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
             }
         } else {
             result = NETWORK_SETUP_FAIL_MSG;
+            returnMsg = new Message(false, result, JOptionPane.ERROR_MESSAGE);
         }
-        return result;
+        return returnMsg;
     }
 
     private String forwardPort(boolean isMacOS, String userName) {

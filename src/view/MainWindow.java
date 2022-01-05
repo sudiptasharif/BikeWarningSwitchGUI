@@ -379,7 +379,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jMenuItemConfigTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConfigTCPActionPerformed
         tcpController = ConfigureTCPController.getInstance();
-        JOptionPane.showMessageDialog(this, tcpController.setupTCP(), "Network", JOptionPane.INFORMATION_MESSAGE);
+        Message returnMsg = tcpController.setupTCP();
+        JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Network", returnMsg.getMessageType());
     }//GEN-LAST:event_jMenuItemConfigTCPActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
