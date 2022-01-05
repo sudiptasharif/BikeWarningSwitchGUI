@@ -35,6 +35,9 @@ public class SUtils {
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
     public static final String CSV_ROOT_FOLDER = "participant_data";
     public static final String APP_ICON_PATH = "res/img/bicycle_edited.png";
+    public static final String SOFTWARE_ENGINEER_NAME = "Sharif";
+    public static final String SOFTWARE_ENGINEER_CONTACT = "sxs1927@mavs.uta.edu";
+    public static final String CONTACT_SOFTWARE_ENGINEER = String.format("If problem persists, contact Software Engineer (%s)\nEmail: %s", SOFTWARE_ENGINEER_NAME, SOFTWARE_ENGINEER_CONTACT);
 
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";

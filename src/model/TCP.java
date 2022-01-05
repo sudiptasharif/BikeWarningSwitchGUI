@@ -26,12 +26,12 @@ public class TCP {
     private final String ADB_PATH_MAC_FORMAT_STR = "/Users/%s/Library/Android/sdk/platform-tools/";
     private final String NETWORK_ACTIVE_MSG = "Network is setup.\nNo action needed.";
     private final String NETWORK_SETUP_SUCCESS_MSG = "Network setup successful.\nReady to start experiment.";
-    private final String NETWORK_SETUP_FAIL_MSG = "Network setup failed.\nTry to configure network manually in terminal.\n\nUse following command:\nadb -d forward tcp:5000 tcp:6000\n\nMake sure: \n(i) Port Number 5000 is available.\n";
+    private final String NETWORK_SETUP_FAIL_MSG = "Network setup failed.\nTry to configure network manually in terminal.\n\nUse following command:\nadb -d forward tcp:5000 tcp:6000\n\nMake sure: \n(i) Port Number 5000 is available.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String OS_ERROR_MSG = "Network setup failed.\nOperating System (OS) not supported.\nConfigure TCP manually for this OS.\nHowever, app might not work as expected.";
     private final String ERROR = "error";
     private final String EMULATOR = "emulator";
     private final String DEVICE = "device";
-    private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "No android device detected. Make sure: \n\n(i) Phone is connected to computer.\n(ii) Phone is not sleeping, and screen is unlocked.\n(iii) USB debugging is enabled.\n\nThen try again.";
+    private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "Network setup failed.\nUnable to communicate with Android Device.\n\nMake sure: \n(i) Device is connected to computer.\n(ii) Device is not sleeping, and screen is unlocked.\n(iii) USB debugging is enabled.\n\nThen try again.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
 
     public String configureTCP() {
         String result;
