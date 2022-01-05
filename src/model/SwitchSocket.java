@@ -27,7 +27,7 @@ public class SwitchSocket {
     private final String UNKNOWN_HOST_EXCEPTION = "Unknown host (port): %s\nException msg: %s\n\nMake sure:\n(i) Network is setup.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String IO_EXCEPTION = "I/O connection exception to: %s\nException msg: %s\n\nMake sure:\n(i) Network is setup.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String INVALID_WARNING = "Warning FAILED.\nInvalid warning code: %s";
-    private final String WARNING_EXCEPTION = "Warning FAILED.\nException message: %s\n\nMake sure:\n(i) Android Device is connected to computer.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
+    private final String WARNING_EXCEPTION = "Warning FAILED.\nException message: %s\n\nMake sure:\n(i) Android Device is connected to computer.\n\nOnce device is reconnected. Make sure:\n(i) Network is setup.\n(ii) App is running.\n(iii) In app press button: START LISTENING.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private final String SOCKET_CLOSE_SUCCESS = "Socket close SUCCESSFUL.";
     private final String SOCKET_CLOSE_FAIL = "Socket close FAILED.\nException message: %s\n\nd" + SUtils.CONTACT_SOFTWARE_ENGINEER;
 
@@ -92,11 +92,14 @@ public class SwitchSocket {
             String t3 = in.readLine();
             if (t3 != null && !t3.equals(Integer.toString(INVALID_WARNING_CODE))) {
                 warningResponse = new Message(true, SUtils.formatDate(Long.parseLong(t3), SUtils.DATE_FORMAT_HH_MM_SS_MSSS), JOptionPane.INFORMATION_MESSAGE);
+                connectedToApp = true;
             } else {
                 warningResponse = new Message(false, String.format(INVALID_WARNING, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
+                connectedToApp = true;
             }
         } catch (IOException e) {
             warningResponse = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
+            connectedToApp = false;
         }
         return warningResponse;
     }

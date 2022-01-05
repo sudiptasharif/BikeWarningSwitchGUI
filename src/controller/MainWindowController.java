@@ -151,4 +151,8 @@ public class MainWindowController {
         modelExperiment.emptyWarningList();
         updateTableData();
     }
+    
+    public boolean isConnectedToAndroidApp() {
+        return switchSocket.isConnectedToAndroidApp();
+    }
 }

@@ -29,6 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private ConfigureTCPController tcpController;
     private MainWindowController mainWindowController;
+    SwitchSocket switchSocket;
 
     /**
      * Creates new form MainWindow
@@ -38,6 +39,7 @@ public class MainWindow extends javax.swing.JFrame {
         setComboBoxWarningItems();
         setEmptyExperimentTableModel();
         setAppIcon();
+        switchSocket = SwitchSocket.getInstance(TCP.HOSTNAME, Integer.parseInt(TCP.PORT_FORWARD_FROM));
     }
 
     /**
@@ -297,7 +299,6 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemStartExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartExpActionPerformed
-        SwitchSocket switchSocket = SwitchSocket.getInstance(TCP.HOSTNAME, Integer.parseInt(TCP.PORT_FORWARD_FROM));
         if (!switchSocket.isConnectedToAndroidApp()) {
             Message returnMsg = switchSocket.connectToAndroidApp();
             if (returnMsg.isMessageSuccess()) {
@@ -369,11 +370,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
-        jButtonSwitch.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        Message returnMsg = mainWindowController.processAlertWarningRequests();
-        jButtonSwitch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        if (!returnMsg.isMessageSuccess()) {
-            JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
+        Message returnMsg;
+        if (!mainWindowController.isConnectedToAndroidApp()) {
+            returnMsg = switchSocket.connectToAndroidApp();
+            if (returnMsg.isMessageSuccess()) {
+                sendWarning();
+            } else {
+                JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Connection Error", returnMsg.getMessageType());
+            }
+        } else {
+            sendWarning();
         }
     }//GEN-LAST:event_jButtonSwitchActionPerformed
 
@@ -525,6 +531,15 @@ public class MainWindow extends javax.swing.JFrame {
             jMenuItemStopExp.setEnabled(false);
             resetGUIComponents();
             setEnabledGUIComponents(false);
+        }
+    }
+
+    private void sendWarning() {
+        jButtonSwitch.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        Message returnMsg = mainWindowController.processAlertWarningRequests();
+        jButtonSwitch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        if (!returnMsg.isMessageSuccess()) {
+            JOptionPane.showMessageDialog(this, returnMsg.getMessage(), "Error", returnMsg.getMessageType());
         }
     }
 }
