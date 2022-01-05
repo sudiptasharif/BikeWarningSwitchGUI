@@ -23,7 +23,7 @@ public class SwitchSocket {
     public static final int INVALID_WARNING_CODE = -1;
 
     private final String CONNECTION_SUCCESS = "Android app connection SUCCESSFUL.\n";
-    private final String CONNECTION_FAILURE = "Android app connection FAILED. Make sure:\n\n(i) Android app is running.\n(ii) Network is setup.\n(iii) In app press button: START LISTENING";
+    private final String CONNECTION_FAILURE = "Android app connection FAILED. Make sure:\n\n(i) Network is setup.\n(ii) Android app is running.\n(iii) In app press button: START LISTENING";
     private final String UNKNOWN_HOST_EXCEPTION = "Unknown host (port): %s\nException msg: %s";
     private final String IO_EXCEPTION = "I/O connection exception to: %s\nException msg: %s";
     private final String INVALID_WARNING = "Warning FAILED.\nInvalid warning code: %s";

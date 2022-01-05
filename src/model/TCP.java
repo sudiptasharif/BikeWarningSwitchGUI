@@ -31,7 +31,7 @@ public class TCP {
     private final String ERROR = "error";
     private final String EMULATOR = "emulator";
     private final String DEVICE = "device";
-    private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "No android device detected. Make sure: \n\n(i) Phone is connected to computer.\n(ii) USB debugging is enabled.\n\nThen try again.";
+    private final String NO_ANDROID_DEVICE_ATTACHED_ERROR_MSG = "No android device detected. Make sure: \n\n(i) Phone is connected to computer.\n(ii) Phone is not sleeping, and screen is unlocked.\n(iii) USB debugging is enabled.\n\nThen try again.";
 
     public String configureTCP() {
         String result;
