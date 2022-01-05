@@ -492,7 +492,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void stopAndSaveExperiment() {
-        if (mainWindowController != null && !mainWindowController.isTableEmpty()) {
+        if (!mainWindowController.isTableEmpty()) {
             int result = JOptionPane.showConfirmDialog(this, "Do you want to save experiment?", this.getTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 mainWindowController.stopExperiment();
@@ -520,6 +520,11 @@ public class MainWindow extends javax.swing.JFrame {
                 resetGUIComponents();
                 setEnabledGUIComponents(false);
             }
+        } else {
+            jMenuItemStartExp.setEnabled(true);
+            jMenuItemStopExp.setEnabled(false);
+            resetGUIComponents();
+            setEnabledGUIComponents(false);
         }
     }
 }
