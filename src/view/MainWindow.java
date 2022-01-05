@@ -67,6 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuExperiment = new javax.swing.JMenu();
         jMenuItemStartExp = new javax.swing.JMenuItem();
         jMenuItemStopExp = new javax.swing.JMenuItem();
+        jMenuItemResetTable = new javax.swing.JMenuItem();
         jMenuNetwork = new javax.swing.JMenu();
         jMenuItemConfigTCP = new javax.swing.JMenuItem();
 
@@ -84,6 +85,11 @@ public class MainWindow extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(740, 540));
         setResizable(false);
         setSize(new java.awt.Dimension(740, 540));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanelDataTable.setBorder(javax.swing.BorderFactory.createTitledBorder("Data"));
         jPanelDataTable.setPreferredSize(new java.awt.Dimension(485, 300));
@@ -234,6 +240,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenuExperiment.add(jMenuItemStopExp);
 
+        jMenuItemResetTable.setText("Reset Table");
+        jMenuItemResetTable.setEnabled(false);
+        jMenuItemResetTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemResetTableActionPerformed(evt);
+            }
+        });
+        jMenuExperiment.add(jMenuItemResetTable);
+
         jMenuBarSwitch.add(jMenuExperiment);
 
         jMenuNetwork.setText("Network");
@@ -261,7 +276,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jPanelParticipant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE))
+                    .addComponent(jPanelDataTable, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -296,13 +311,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemStartExpActionPerformed
 
     private void jMenuItemStopExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopExpActionPerformed
-        jMenuItemStartExp.setEnabled(true);
-        jMenuItemStopExp.setEnabled(false);
-        setEnabledGUIComponents(false);
-        resetGUIComponents();
-        mainWindowController.stopExperiment();
-        Message msg = mainWindowController.saveExperiment();
-        JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType());
+        stopAndSaveExperiment();
     }//GEN-LAST:event_jMenuItemStopExpActionPerformed
 
     private void jButtonSwitchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSwitchMouseEntered
@@ -373,6 +382,20 @@ public class MainWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, tcpController.setupTCP(), "Network", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItemConfigTCPActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        stopAndSaveExperiment();
+        if (mainWindowController != null) {
+            mainWindowController.closeSocketConnection();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jMenuItemResetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetTableActionPerformed
+        jMenuItemResetTable.setEnabled(false);
+        jMenuItemStartExp.setEnabled(true);
+        mainWindowController.emptyDataTable();
+        resetGUIComponents();
+    }//GEN-LAST:event_jMenuItemResetTableActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSwitch;
     private javax.swing.JComboBox<String> jComboBoxWarning;
@@ -383,6 +406,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuExperiment;
     private javax.swing.JMenuItem jMenuItemConfigTCP;
     private javax.swing.JMenuItem jMenuItemDelete;
+    private javax.swing.JMenuItem jMenuItemResetTable;
     private javax.swing.JMenuItem jMenuItemStartExp;
     private javax.swing.JMenuItem jMenuItemStopExp;
     private javax.swing.JMenu jMenuNetwork;
@@ -405,7 +429,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void resetGUIComponents() {
-        setEmptyExperimentTableModel();
         jComboBoxWarning.setSelectedIndex(0);
         jTextFieldParticipantID.setText("");
         jTextFieldParticipantName.setText("");
@@ -466,5 +489,37 @@ public class MainWindow extends javax.swing.JFrame {
         getParticipantInfo();
         setEnabledGUIComponents(true);
         mainWindowController = new MainWindowController(switchSocket, new Experiment(Integer.parseInt(jTextFieldParticipantID.getText()), jTextFieldParticipantName.getText()), jTableData);
+    }
+
+    private void stopAndSaveExperiment() {
+        if (mainWindowController != null && !mainWindowController.isTableEmpty()) {
+            int result = JOptionPane.showConfirmDialog(this, "Do you want to save experiment?", this.getTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                mainWindowController.stopExperiment();
+                Message msg = mainWindowController.saveExperiment();
+                if (msg.isMessageSuccess()) {
+                    JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType());
+                    mainWindowController.emptyDataTable();
+                    jMenuItemStartExp.setEnabled(true);
+                    jMenuItemStopExp.setEnabled(false);
+                    resetGUIComponents();
+                    setEnabledGUIComponents(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, msg.getMessage(), "Experiment", msg.getMessageType());
+                    jMenuItemResetTable.setEnabled(true);
+                    jMenuItemStopExp.setEnabled(false);
+                    setEnabledGUIComponents(false);
+                    jTableData.setEnabled(true);
+                    jComboBoxWarning.setSelectedIndex(0);
+                }
+            } else {
+                mainWindowController.stopExperiment();
+                mainWindowController.emptyDataTable();
+                jMenuItemStartExp.setEnabled(true);
+                jMenuItemStopExp.setEnabled(false);
+                resetGUIComponents();
+                setEnabledGUIComponents(false);
+            }
+        }
     }
 }

@@ -66,4 +66,8 @@ public class Experiment {
         experimentName = participantID + "_" + participantName + "_" + startExpTimeStr;
         return experimentName;
     }
+    
+    public void emptyWarningList() {
+        warningList = new ArrayList<>();
+    }
 }

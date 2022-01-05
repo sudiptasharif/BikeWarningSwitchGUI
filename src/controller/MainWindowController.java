@@ -96,9 +96,9 @@ public class MainWindowController {
         File csvFile = SUtils.getUniqueFile(SUtils.CSV_ROOT_FOLDER, modelExperiment.getExperimentName(), ".csv");
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile))) {
             writer.writeAll(dataList);
-            msg = new Message("Experiment saved SUCCESSFULLY. File Location:\n" + csvFile.getAbsolutePath(), JOptionPane.INFORMATION_MESSAGE);
+            msg = new Message(true, "Experiment saved SUCCESSFULLY. File Location:\n" + csvFile.getAbsolutePath(), JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            msg = new Message("Experiment saved FAILED.\nError: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+            msg = new Message(false, "Experiment saved FAILED.\nError: "+ e.getMessage() +"\n\nMake sure:\n(i) Folder 'participant_data' is created in root project folder.\n\nPlease take screenshots of Data.\nThen 'Reset Table' from 'Experiment' menu.\n\nIf problem persists, contact Software Engineer (Sharif)\nEmail: sxs1927@mavs.uta.edu", JOptionPane.ERROR_MESSAGE);
         }
         return msg;
     }
@@ -137,5 +137,18 @@ public class MainWindowController {
             dataList.add(columnValues);
         }
         return dataList;
+    }
+    
+    public boolean isTableEmpty() {
+        return modelExperiment.getWarningListCount() == 0;
+    }
+    
+    public void closeSocketConnection() {
+        switchSocket.closeSocket();
+    }
+    
+    public void emptyDataTable() {
+        modelExperiment.emptyWarningList();
+        updateTableData();
     }
 }
