@@ -58,16 +58,12 @@ public class MainWindowController {
 
     public Message processAlertWarningRequests() {
         Message response;
-        try {
-            Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
-            response = switchSocket.sendWarningSignal(selectedWarningCode);
-            if (response.isMessageSuccess()) {
-                warning.setT3(response.getMessage());
-                modelExperiment.addWarning(warning);
-                updateTableData();
-            }
-        } catch (Exception e) {
-            response = new Message(false, String.format("Warning FAILED.\nException message: %s", e.getMessage()), JOptionPane.ERROR_MESSAGE);
+        Warning warning = new Warning(selectedWarningCode, SUtils.formatDate(System.currentTimeMillis(), SUtils.DATE_FORMAT_HH_MM_SS_MSSS));
+        response = switchSocket.sendWarningSignal(selectedWarningCode);
+        if (response.isMessageSuccess()) {
+            warning.setT3(response.getMessage());
+            modelExperiment.addWarning(warning);
+            updateTableData();
         }
         return response;
     }
@@ -100,7 +96,7 @@ public class MainWindowController {
             writer.writeAll(dataList);
             msg = new Message(true, String.format(EXPERIMENT_SAVED_SUCCESSFULLY, csvFile.getAbsolutePath()), JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            msg = new Message(false, String.format(EXPERIMENT_SAVED_FAILED, e.getMessage(), SUtils.getCSVRootFolderPathByOS()) , JOptionPane.ERROR_MESSAGE);
+            msg = new Message(false, String.format(EXPERIMENT_SAVED_FAILED, e.getMessage(), SUtils.getCSVRootFolderPathByOS()), JOptionPane.ERROR_MESSAGE);
         }
         return msg;
     }
@@ -140,20 +136,20 @@ public class MainWindowController {
         }
         return dataList;
     }
-    
+
     public boolean isTableEmpty() {
         return modelExperiment.getWarningListCount() == 0;
     }
-    
+
     public void closeSocketConnection() {
         switchSocket.closeSocket();
     }
-    
+
     public void emptyDataTable() {
         modelExperiment.emptyWarningList();
         updateTableData();
     }
-    
+
     public boolean isConnectedToAndroidApp() {
         return switchSocket.isConnectedToAndroidApp();
     }

@@ -90,14 +90,14 @@ public class SwitchSocket {
         try {
             out.println(warningCodeToSend);
             String t3 = in.readLine();
-            if (t3 != null && !t3.equals(Integer.toString(INVALID_WARNING_CODE))) {
+            if (!t3.equals(Integer.toString(INVALID_WARNING_CODE))) {
                 warningResponse = new Message(true, SUtils.formatDate(Long.parseLong(t3), SUtils.DATE_FORMAT_HH_MM_SS_MSSS), JOptionPane.INFORMATION_MESSAGE);
                 connectedToApp = true;
             } else {
                 warningResponse = new Message(false, String.format(INVALID_WARNING, warningCodeToSend), JOptionPane.ERROR_MESSAGE);
                 connectedToApp = true;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             warningResponse = new Message(false, String.format(WARNING_EXCEPTION, e.getMessage()), JOptionPane.ERROR_MESSAGE);
             connectedToApp = false;
         }
