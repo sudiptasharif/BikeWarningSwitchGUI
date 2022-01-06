@@ -25,6 +25,8 @@ import model.SwitchSocket;
  */
 public class MainWindowController {
 
+    private final String EXPERIMENT_SAVED_SUCCESSFULLY = "Experiment saved SUCCESSFULLY. File Location:\n%s";
+    private final String EXPERIMENT_SAVED_FAILED = "Experiment saved FAILED.\nError: %s\n\nMake sure:\n(i) Folder 'participant_data' is exists at:\n%s\n\nPlease take screenshots of Data.\nThen 'Reset Table' from 'Experiment' menu.\n\n" + SUtils.CONTACT_SOFTWARE_ENGINEER;
     private JTable viewDataTable;
     private Experiment modelExperiment;
     private volatile int selectedWarningCode;
@@ -93,12 +95,12 @@ public class MainWindowController {
     public Message saveExperiment() {
         Message msg;
         List<String[]> dataList = convertExperimentDataToArrayList();
-        File csvFile = SUtils.getUniqueFile(SUtils.CSV_ROOT_FOLDER, modelExperiment.getExperimentName(), ".csv");
+        File csvFile = SUtils.getUniqueCSVFile(modelExperiment.getExperimentName(), ".csv");
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFile))) {
             writer.writeAll(dataList);
-            msg = new Message(true, "Experiment saved SUCCESSFULLY. File Location:\n" + csvFile.getAbsolutePath(), JOptionPane.INFORMATION_MESSAGE);
+            msg = new Message(true, String.format(EXPERIMENT_SAVED_SUCCESSFULLY, csvFile.getAbsolutePath()), JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            msg = new Message(false, "Experiment saved FAILED.\nError: "+ e.getMessage() +"\n\nMake sure:\n(i) Folder 'participant_data' is created in root project folder.\n\nPlease take screenshots of Data.\nThen 'Reset Table' from 'Experiment' menu.\n\nIf problem persists, contact Software Engineer (Sharif)\nEmail: sxs1927@mavs.uta.edu", JOptionPane.ERROR_MESSAGE);
+            msg = new Message(false, String.format(EXPERIMENT_SAVED_FAILED, e.getMessage(), SUtils.getCSVRootFolderPathByOS()) , JOptionPane.ERROR_MESSAGE);
         }
         return msg;
     }

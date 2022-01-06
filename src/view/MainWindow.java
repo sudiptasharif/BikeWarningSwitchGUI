@@ -403,6 +403,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuItemStartExp.setEnabled(true);
         mainWindowController.emptyDataTable();
         resetGUIComponents();
+        setEnabledGUIComponents(false);
     }//GEN-LAST:event_jMenuItemResetTableActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -486,7 +487,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void setAppIcon() {
         if (SUtils.isOSWindows()) {
-            this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH).getImage());
+            this.setIconImage(new ImageIcon(SUtils.APP_ICON_PATH_WINDOWS).getImage());
             // ImageIcon not supported in Mac OS           
         }
     }
@@ -500,7 +501,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void stopAndSaveExperiment() {
-        if (mainWindowController != null && mainWindowController.isTableEmpty()) {
+        if (mainWindowController != null && !mainWindowController.isTableEmpty()) {
             int result = JOptionPane.showConfirmDialog(this, "Do you want to save experiment?", this.getTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 mainWindowController.stopExperiment();

@@ -33,12 +33,13 @@ public class SUtils {
     public static final int DEFAULT_WARNING_CODE = 1;
     public static final String DEFAULT_T = "--";
     public static final String REGEX_EXTRA_WHITE_SPACE = "\\s+";
-    public static final String CSV_ROOT_FOLDER = "participant_data";
-    public static final String APP_ICON_PATH = "res/img/bicycle_edited.png";
+    public static final String CSV_ROOT_FOLDER_WINDOWS = "C:\\repos\\BikeWarningApp\\BikeWarningSwitchGUI\\participant_data\\";
+    public static final String APP_ICON_PATH_WINDOWS = "C:\\repos\\BikeWarningApp\\BikeWarningSwitchGUI\\res\\img\\bicycle_edited.png";
     public static final String SOFTWARE_ENGINEER_NAME = "Sharif";
     public static final String SOFTWARE_ENGINEER_CONTACT = "sxs1927@mavs.uta.edu";
     public static final String CONTACT_SOFTWARE_ENGINEER = String.format("If problem persists, contact Software Engineer (%s)\nEmail: %s", SOFTWARE_ENGINEER_NAME, SOFTWARE_ENGINEER_CONTACT);
-
+    public static final String CSV_ROOT_FOLDER_UNIX_FORMAT_STR = "/Users/%s/repos/BikeWarningApp/BikeWarningSwitchGUI/participant_data/";
+    
     public static String formatDate(Calendar calendar, String dateFormatPattern) {
         String formattedDate = "";
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormatPattern);
@@ -100,8 +101,9 @@ public class SUtils {
         return System.getProperty("user.name");
     }
     
-    public static File getUniqueFile(String rootFolderName, String fileName, String fileExtension) {
-        String fullFileName = rootFolderName + "/" + fileName + fileExtension;
+    public static File getUniqueCSVFile(String fileName, String fileExtension) {
+        String rootFolderName = getCSVRootFolderPathByOS();
+        String fullFileName = rootFolderName + fileName + fileExtension;
         String fileNameWithIndex = "";
         File file = new File(fullFileName); 
         int index = 2;
@@ -112,5 +114,13 @@ public class SUtils {
             index++;
         }
         return file;
+    }
+    
+    public static String getCSVRootFolderPathByOS(){
+        if (isOSWindows()) {
+            return CSV_ROOT_FOLDER_WINDOWS;
+        } else {
+            return String.format(CSV_ROOT_FOLDER_UNIX_FORMAT_STR, getSystemUserName());
+        }
     }
 }
