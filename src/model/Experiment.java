@@ -63,7 +63,7 @@ public class Experiment {
         String participantID = participant.getId() + "";
         String participantName = participant.getName().replaceAll(" ", "_");
         String startExpTimeStr = SUtils.formatDate(startDateTime, SUtils.DATE_FORMAT_YYYY_MM_DD);
-        experimentName = participantID + "_" + participantName + "_" + startExpTimeStr;
+        experimentName = participantID + "_" + participantName.toLowerCase() + "_" + startExpTimeStr;
         return experimentName;
     }
     
