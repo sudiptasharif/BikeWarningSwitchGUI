@@ -366,7 +366,9 @@ public class MainWindow extends javax.swing.JFrame {
         JComboBox cb = (JComboBox) evt.getSource();
         int warningIndex = cb.getSelectedIndex();
         updateEnableButtonSwitch(warningIndex + 1);
-        mainWindowController.updateSelectedWarningCode(warningIndex + 1);
+        if (mainWindowController != null) {
+            mainWindowController.updateSelectedWarningCode(warningIndex + 1);
+        }
     }//GEN-LAST:event_jComboBoxWarningActionPerformed
 
     private void jButtonSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSwitchActionPerformed
@@ -498,7 +500,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void stopAndSaveExperiment() {
-        if (!mainWindowController.isTableEmpty()) {
+        if (mainWindowController != null && mainWindowController.isTableEmpty()) {
             int result = JOptionPane.showConfirmDialog(this, "Do you want to save experiment?", this.getTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (result == JOptionPane.YES_OPTION) {
                 mainWindowController.stopExperiment();
